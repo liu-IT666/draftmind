@@ -5,7 +5,11 @@ matchups (counter) and same-team pairs (synergy), all shrunk toward 50% so that
 small samples do not dominate.
 
 Usage: python3 pipeline/leaguepedia_stats.py --since 2026-07-01 [--out PATH]
+       [--league LPL --league LCK ...] [--include-cached] [--max-wait 3600]
 Leaguepedia rate-limits hard; the script backs off and caches pages in .cache/.
+--league limits the query to tournaments whose name starts with the prefix, and
+--include-cached merges every page already cached by earlier runs, so a large
+crawl can be finished in several smaller runs.
 Data: Leaguepedia (CC BY-SA 3.0), https://lol.fandom.com
 """
 import argparse
@@ -21,9 +25,12 @@ from collections import defaultdict
 API = "https://lol.fandom.com/api.php"
 UA = "DraftMind/0.1 (coach draft assistant; stats pipeline)"
 ROLES = {"Top": "top", "Jungle": "jungle", "Mid": "mid", "Bot": "bot", "Support": "support"}
-PRIOR = 10  # pseudo-games at 50% used for Bayesian shrinkage
+PRIOR = 10  # pseudo-games at 50% used for Bayesian shrinkage of champion win rates
+PAIR_PRIOR = 25  # stronger shrinkage for matchups and pairs, which have far fewer games
 HERE = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HERE, ".cache")
+MAX_WAIT = None  # seconds of rate-limit waiting allowed per run; None = unlimited
+_waited = 0
 
 
 def cargo(params):
@@ -33,6 +40,7 @@ def cargo(params):
     if os.path.exists(path):
         with open(path) as f:
             return json.load(f)
+    global _waited
     delay = 10
     while True:
         req = urllib.request.Request(f"{API}?{query}", headers={"User-Agent": UA})
@@ -46,8 +54,11 @@ def cargo(params):
             return rows
         if data["error"].get("code") != "ratelimited":
             raise RuntimeError(data["error"])
+        if MAX_WAIT is not None and _waited + delay > MAX_WAIT:
+            raise TimeoutError(f"rate limited for {_waited}s, giving up (raise --max-wait)")
         print(f"  rate limited, waiting {delay}s", file=sys.stderr)
         time.sleep(delay)
+        _waited += delay
         delay = min(delay * 2, 300)
 
 
@@ -72,7 +83,12 @@ def main():
     ap.add_argument("--since", default="2026-07-01")
     ap.add_argument("--out", default=os.path.join(HERE, "..", "src", "data", "stats", "pro.json"))
     ap.add_argument("--champions", default=os.path.join(HERE, "..", "src", "data", "champions.json"))
+    ap.add_argument("--league", action="append", default=[], help="tournament name prefix, e.g. LPL")
+    ap.add_argument("--include-cached", action="store_true", help="also use pages cached by earlier runs")
+    ap.add_argument("--max-wait", type=int, default=None, help="max seconds to wait on rate limits")
     args = ap.parse_args()
+    global MAX_WAIT
+    MAX_WAIT = args.max_wait
 
     with open(args.champions) as f:
         champs = json.load(f)["champions"]
@@ -86,16 +102,28 @@ def main():
         return by_name[name]
 
     where = f"SG.DateTime_UTC >= '{args.since}'"
+    if args.league:
+        prefixes = " OR ".join(f"SG.Tournament LIKE '{p}%'" for p in args.league)
+        where += f" AND ({prefixes})"
     # ScoreboardGames lists each team's picks in role order (top, jungle, mid, bot, support),
     # so one table gives bans, picks, roles and the winner.
     games = fetch_all("ScoreboardGames=SG",
                       "SG.GameId,SG.Patch,SG.Tournament,SG.Team1Bans,SG.Team2Bans,SG.Team1Picks,SG.Team2Picks,SG.Winner",
                       where, "SG.GameId")
+    if args.include_cached:
+        seen = {g["GameId"] for g in games}
+        for name in sorted(os.listdir(CACHE)):
+            with open(os.path.join(CACHE, name)) as f:
+                for g in json.load(f):
+                    if "Team1Picks" in g and g["GameId"] not in seen:
+                        seen.add(g["GameId"])
+                        games.append(g)
 
     picks = defaultdict(lambda: [0, 0])  # champion -> [games, wins]
     role_picks = defaultdict(lambda: defaultdict(int))
     bans = defaultdict(int)
     patches = defaultdict(int)
+    tournaments = defaultdict(int)
     lineups = {}  # (game, side) -> role -> (champ, win)
     order = list(ROLES.values())
     for g in games:
@@ -103,6 +131,7 @@ def main():
         if len(t1) != 5 or len(t2) != 5 or g["Winner"] not in ("1", "2"):
             continue
         patches[g["Patch"]] += 1
+        tournaments[g["Tournament"]] += 1
         for col in ("Team1Bans", "Team2Bans"):
             for b in (g[col] or "").split(","):
                 if b.strip() and b.strip() != "None":
@@ -153,12 +182,12 @@ def main():
     counters = {}
     for (a, b), (g, w) in matchups.items():
         if g >= 2:
-            counters.setdefault(a, {})[b] = [round((w + PRIOR * base(a)) / (g + PRIOR) - base(a), 4), g]
+            counters.setdefault(a, {})[b] = [round((w + PAIR_PRIOR * base(a)) / (g + PAIR_PRIOR) - base(a), 4), g]
     synergy = {}
     for (a, b), (g, w) in pairs.items():
         if g >= 3:
             expected = (base(a) + base(b)) / 2
-            delta = round((w + PRIOR * expected) / (g + PRIOR) - expected, 4)
+            delta = round((w + PAIR_PRIOR * expected) / (g + PAIR_PRIOR) - expected, 4)
             synergy.setdefault(a, {})[b] = [delta, g]
             synergy.setdefault(b, {})[a] = [delta, g]
 
@@ -168,6 +197,7 @@ def main():
         "since": args.since,
         "games": n_games,
         "patches": dict(sorted(patches.items())),
+        "tournaments": dict(sorted(tournaments.items(), key=lambda kv: -kv[1])),
         "generatedAt": time.strftime("%Y-%m-%d"),
         "champions": champions,
         "counters": counters,

@@ -93,6 +93,8 @@ export interface StatsPack {
   since?: string;
   games: number;
   patches?: Record<string, number>;
+  /** Games per tournament, to show which leagues the pack covers. */
+  tournaments?: Record<string, number>;
   generatedAt?: string;
   champions: Record<string, ChampStats>;
   /** counters[a][b] = [win-rate delta of a vs b in the same role, games] */

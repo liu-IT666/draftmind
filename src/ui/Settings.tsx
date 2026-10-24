@@ -22,6 +22,12 @@ const HELP: Record<keyof Weights, string> = {
   threat: 'Ban 时额外考虑对我方已选英雄的克制',
 };
 
+function patchRange(stats: StatsPack) {
+  const patches = Object.keys(stats.patches ?? {}).filter(Boolean);
+  if (patches.length === 0) return '';
+  return `，版本 ${patches[0]}${patches.length > 1 ? `–${patches[patches.length - 1]}` : ''}`;
+}
+
 export function Settings({ state, stats, onChange }: Props) {
   const setWeight = (k: keyof Weights, v: number) => onChange({ weights: { ...state.weights, [k]: v } });
   const importStats = async (file: File) => {
@@ -64,7 +70,8 @@ export function Settings({ state, stats, onChange }: Props) {
             {stats ? (
               <>
                 {stats.source}，{stats.games} 局，{stats.since ? `${stats.since} 起` : ''}
-                {stats.patches && `，版本 ${Object.keys(stats.patches).join(' / ')}`}
+                {patchRange(stats)}
+                {stats.tournaments && `，${Object.keys(stats.tournaments).length} 个赛事`}
                 {stats.generatedAt && `，生成于 ${stats.generatedAt}`}
                 {state.customStats && '（已导入自定义数据）'}
               </>

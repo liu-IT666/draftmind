@@ -46,7 +46,7 @@ Ban 分 = 对方视角的 Pick 分 + λ × 对我方已选英雄的克制。软�
 ## 数据
 
 - `src/data/champions.json` + `public/champions/*.png`：`npm run data:champions [版本号]` 从 Data Dragon（zh_CN / en_US）和 Meraki Analytics（位置、伤害类型）生成。俗称和位置补丁在 `scripts/champion-overrides.mjs`。
-- `src/data/stats/pro.json`：`python3 pipeline/leaguepedia_stats.py --since 2026-07-15` 从 Leaguepedia 拉职业赛对局生成（BP 率、胜率、对位、协同）。Leaguepedia 限流很严，脚本会退避重试并把分页缓存在 `pipeline/.cache/`。数据遵循 CC BY-SA 3.0。
+- `src/data/stats/pro.json`：`python3 pipeline/leaguepedia_stats.py --since 2026-07-15` 从 Leaguepedia 拉职业赛对局生成（BP 率、胜率、对位、协同）。Leaguepedia 限流很严（实测每 500 局要等十几到二十分钟），脚本会退避重试并把分页缓存在 `pipeline/.cache/`。可以用 `--league LPL --league LDL` 只拉指定赛事，用 `--include-cached` 把之前各次运行缓存的分页合并进来，用 `--max-wait` 限制等待时长，大范围数据可以分几次拉完。数据遵循 CC BY-SA 3.0。
 - 也可以在设置页导入同格式的统计 JSON（例如以后用外服高分段路人局数据生成的）。
 
 统计数据格式：
