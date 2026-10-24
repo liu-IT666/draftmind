@@ -1,0 +1,5908 @@
+{
+ "patch": "16.21.1",
+ "generatedAt": "2026-10-24",
+ "champions": [
+  {
+   "id": "Aatrox",
+   "key": 266,
+   "nameZh": "暗裔剑魔",
+   "titleZh": "亚托克斯",
+   "nameEn": "Aatrox",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "暗裔剑魔",
+    "亚托克斯",
+    "anyijianmo",
+    "yatuokesi",
+    "ayjm",
+    "ytks",
+    "aatrox",
+    "剑魔"
+   ]
+  },
+  {
+   "id": "Ahri",
+   "key": 103,
+   "nameZh": "九尾妖狐",
+   "titleZh": "阿狸",
+   "nameEn": "Ahri",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "BURST",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "九尾妖狐",
+    "阿狸",
+    "jiuweiyaohu",
+    "ali",
+    "jwyh",
+    "al",
+    "ahri",
+    "狐狸"
+   ]
+  },
+  {
+   "id": "Akali",
+   "key": 84,
+   "nameZh": "离群之刺",
+   "titleZh": "阿卡丽",
+   "nameEn": "Akali",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "离群之刺",
+    "阿卡丽",
+    "liqunzhici",
+    "akali",
+    "lqzc",
+    "akl"
+   ]
+  },
+  {
+   "id": "Akshan",
+   "key": 166,
+   "nameZh": "影哨",
+   "titleZh": "阿克尚",
+   "nameEn": "Akshan",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "影哨",
+    "阿克尚",
+    "yingshao",
+    "akeshang",
+    "ys",
+    "aks",
+    "akshan"
+   ]
+  },
+  {
+   "id": "Alistar",
+   "key": 12,
+   "nameZh": "牛头酋长",
+   "titleZh": "阿利斯塔",
+   "nameEn": "Alistar",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "牛头酋长",
+    "阿利斯塔",
+    "niutouqiuzhang",
+    "alisita",
+    "ntqz",
+    "alst",
+    "alistar",
+    "牛头"
+   ]
+  },
+  {
+   "id": "Ambessa",
+   "key": 799,
+   "nameZh": "铁血狼母",
+   "titleZh": "安蓓萨",
+   "nameEn": "Ambessa",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "铁血狼母",
+    "安蓓萨",
+    "tiexuelangmu",
+    "anbeisa",
+    "txlm",
+    "abs",
+    "ambessa"
+   ]
+  },
+  {
+   "id": "Amumu",
+   "key": 32,
+   "nameZh": "殇之木乃伊",
+   "titleZh": "阿木木",
+   "nameEn": "Amumu",
+   "positions": [
+    "jungle",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "殇之木乃伊",
+    "阿木木",
+    "shangzhimunaiyi",
+    "amumu",
+    "szmny",
+    "amm"
+   ]
+  },
+  {
+   "id": "Anivia",
+   "key": 34,
+   "nameZh": "冰晶凤凰",
+   "titleZh": "艾尼维亚",
+   "nameEn": "Anivia",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "冰晶凤凰",
+    "艾尼维亚",
+    "bingjingfenghuang",
+    "ainiweiya",
+    "bjfh",
+    "anwy",
+    "anivia"
+   ]
+  },
+  {
+   "id": "Annie",
+   "key": 1,
+   "nameZh": "黑暗之女",
+   "titleZh": "安妮",
+   "nameEn": "Annie",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "黑暗之女",
+    "安妮",
+    "heianzhinü",
+    "anni",
+    "hazn",
+    "an",
+    "annie"
+   ]
+  },
+  {
+   "id": "Aphelios",
+   "key": 523,
+   "nameZh": "残月之肃",
+   "titleZh": "厄斐琉斯",
+   "nameEn": "Aphelios",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "残月之肃",
+    "厄斐琉斯",
+    "canyuezhisu",
+    "efeiliusi",
+    "cyzs",
+    "efls",
+    "aphelios",
+    "残月"
+   ]
+  },
+  {
+   "id": "Ashe",
+   "key": 22,
+   "nameZh": "寒冰射手",
+   "titleZh": "艾希",
+   "nameEn": "Ashe",
+   "positions": [
+    "bot",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Support"
+   ],
+   "roles": [
+    "MARKSMAN",
+    "SUPPORT"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "寒冰射手",
+    "艾希",
+    "hanbingsheshou",
+    "aixi",
+    "hbss",
+    "ax",
+    "ashe"
+   ]
+  },
+  {
+   "id": "AurelionSol",
+   "key": 136,
+   "nameZh": "铸星龙王",
+   "titleZh": "奥瑞利安·索尔",
+   "nameEn": "Aurelion Sol",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "铸星龙王",
+    "奥瑞利安·索尔",
+    "zhuxinglongwang",
+    "aoruilian·suoer",
+    "zxlw",
+    "arla·se",
+    "aurelion sol",
+    "aurelionsol"
+   ]
+  },
+  {
+   "id": "Aurora",
+   "key": 893,
+   "nameZh": "双界灵兔",
+   "titleZh": "阿萝拉",
+   "nameEn": "Aurora",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "BURST",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "双界灵兔",
+    "阿萝拉",
+    "shuangjielingtu",
+    "aluola",
+    "sjlt",
+    "all",
+    "aurora"
+   ]
+  },
+  {
+   "id": "Azir",
+   "key": 268,
+   "nameZh": "沙漠皇帝",
+   "titleZh": "阿兹尔",
+   "nameEn": "Azir",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Marksman"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN",
+    "SPECIALIST"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "沙漠皇帝",
+    "阿兹尔",
+    "shamohuangdi",
+    "azier",
+    "smhd",
+    "aze",
+    "azir",
+    "沙皇"
+   ]
+  },
+  {
+   "id": "Bard",
+   "key": 432,
+   "nameZh": "星界游神",
+   "titleZh": "巴德",
+   "nameEn": "Bard",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "CATCHER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "星界游神",
+    "巴德",
+    "xingjieyoushen",
+    "bade",
+    "xjys",
+    "bd",
+    "bard"
+   ]
+  },
+  {
+   "id": "Belveth",
+   "key": 200,
+   "nameZh": "虚空女皇",
+   "titleZh": "卑尔维斯",
+   "nameEn": "Bel'Veth",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "虚空女皇",
+    "卑尔维斯",
+    "xukongnühuang",
+    "beierweisi",
+    "xknh",
+    "bews",
+    "bel'veth",
+    "belveth"
+   ]
+  },
+  {
+   "id": "Blitzcrank",
+   "key": 53,
+   "nameZh": "蒸汽机器人",
+   "titleZh": "布里茨",
+   "nameEn": "Blitzcrank",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "CATCHER",
+    "SUPPORT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "蒸汽机器人",
+    "布里茨",
+    "zhengqijiqiren",
+    "bulici",
+    "zqjqr",
+    "blc",
+    "blitzcrank"
+   ]
+  },
+  {
+   "id": "Brand",
+   "key": 63,
+   "nameZh": "复仇焰魂",
+   "titleZh": "布兰德",
+   "nameEn": "Brand",
+   "positions": [
+    "jungle",
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "复仇焰魂",
+    "布兰德",
+    "fuchouyanhun",
+    "bulande",
+    "fcyh",
+    "bld",
+    "brand"
+   ]
+  },
+  {
+   "id": "Braum",
+   "key": 201,
+   "nameZh": "弗雷尔卓德之心",
+   "titleZh": "布隆",
+   "nameEn": "Braum",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "WARDEN"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "弗雷尔卓德之心",
+    "布隆",
+    "fuleierzhuodezhixin",
+    "bulong",
+    "flezdzx",
+    "bl",
+    "braum"
+   ]
+  },
+  {
+   "id": "Briar",
+   "key": 233,
+   "nameZh": "狂厄蔷薇",
+   "titleZh": "贝蕾亚",
+   "nameEn": "Briar",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "狂厄蔷薇",
+    "贝蕾亚",
+    "kuangeqiangwei",
+    "beileiya",
+    "keqw",
+    "bly",
+    "briar"
+   ]
+  },
+  {
+   "id": "Caitlyn",
+   "key": 51,
+   "nameZh": "皮城女警",
+   "titleZh": "凯特琳",
+   "nameEn": "Caitlyn",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "皮城女警",
+    "凯特琳",
+    "pichengnüjing",
+    "kaitelin",
+    "pcnj",
+    "ktl",
+    "caitlyn",
+    "女警"
+   ]
+  },
+  {
+   "id": "Camille",
+   "key": 164,
+   "nameZh": "青钢影",
+   "titleZh": "卡蜜尔",
+   "nameEn": "Camille",
+   "positions": [
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "青钢影",
+    "卡蜜尔",
+    "qinggangying",
+    "kamier",
+    "qgy",
+    "kme",
+    "camille"
+   ]
+  },
+  {
+   "id": "Cassiopeia",
+   "key": 69,
+   "nameZh": "魔蛇之拥",
+   "titleZh": "卡西奥佩娅",
+   "nameEn": "Cassiopeia",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "魔蛇之拥",
+    "卡西奥佩娅",
+    "moshezhiyong",
+    "kaxiaopeiya",
+    "mszy",
+    "kxapy",
+    "cassiopeia",
+    "蛇女"
+   ]
+  },
+  {
+   "id": "Chogath",
+   "key": 31,
+   "nameZh": "虚空恐惧",
+   "titleZh": "科加斯",
+   "nameEn": "Cho'Gath",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "SPECIALIST",
+    "TANK"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "虚空恐惧",
+    "科加斯",
+    "xukongkongju",
+    "kejiasi",
+    "xkkj",
+    "kjs",
+    "cho'gath",
+    "chogath"
+   ]
+  },
+  {
+   "id": "Corki",
+   "key": 42,
+   "nameZh": "英勇投弹手",
+   "titleZh": "库奇",
+   "nameEn": "Corki",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "英勇投弹手",
+    "库奇",
+    "yingyongtoudanshou",
+    "kuqi",
+    "yytds",
+    "kq",
+    "corki",
+    "飞机"
+   ]
+  },
+  {
+   "id": "Darius",
+   "key": 122,
+   "nameZh": "诺克萨斯之手",
+   "titleZh": "德莱厄斯",
+   "nameEn": "Darius",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "诺克萨斯之手",
+    "德莱厄斯",
+    "nuokesasizhishou",
+    "delaiesi",
+    "nksszs",
+    "dles",
+    "darius"
+   ]
+  },
+  {
+   "id": "Diana",
+   "key": 131,
+   "nameZh": "皎月女神",
+   "titleZh": "黛安娜",
+   "nameEn": "Diana",
+   "positions": [
+    "jungle",
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "皎月女神",
+    "黛安娜",
+    "jiaoyuenüshen",
+    "daianna",
+    "jyns",
+    "dan",
+    "diana"
+   ]
+  },
+  {
+   "id": "DrMundo",
+   "key": 36,
+   "nameZh": "祖安狂人",
+   "titleZh": "蒙多医生",
+   "nameEn": "Dr. Mundo",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "祖安狂人",
+    "蒙多医生",
+    "zuankuangren",
+    "mengduoyisheng",
+    "zakr",
+    "mdys",
+    "dr. mundo",
+    "drmundo"
+   ]
+  },
+  {
+   "id": "Draven",
+   "key": 119,
+   "nameZh": "荣耀行刑官",
+   "titleZh": "德莱文",
+   "nameEn": "Draven",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "荣耀行刑官",
+    "德莱文",
+    "rongyaoxingxingguan",
+    "delaiwen",
+    "ryxxg",
+    "dlw",
+    "draven"
+   ]
+  },
+  {
+   "id": "Ekko",
+   "key": 245,
+   "nameZh": "时间刺客",
+   "titleZh": "艾克",
+   "nameEn": "Ekko",
+   "positions": [
+    "jungle",
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "时间刺客",
+    "艾克",
+    "shijiancike",
+    "aike",
+    "sjck",
+    "ak",
+    "ekko"
+   ]
+  },
+  {
+   "id": "Elise",
+   "key": 60,
+   "nameZh": "蜘蛛女皇",
+   "titleZh": "伊莉丝",
+   "nameEn": "Elise",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "蜘蛛女皇",
+    "伊莉丝",
+    "zhizhunühuang",
+    "yilisi",
+    "zznh",
+    "yls",
+    "elise",
+    "蜘蛛"
+   ]
+  },
+  {
+   "id": "Evelynn",
+   "key": 28,
+   "nameZh": "痛苦之拥",
+   "titleZh": "伊芙琳",
+   "nameEn": "Evelynn",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "痛苦之拥",
+    "伊芙琳",
+    "tongkuzhiyong",
+    "yifulin",
+    "tkzy",
+    "yfl",
+    "evelynn"
+   ]
+  },
+  {
+   "id": "Ezreal",
+   "key": 81,
+   "nameZh": "探险家",
+   "titleZh": "伊泽瑞尔",
+   "nameEn": "Ezreal",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "探险家",
+    "伊泽瑞尔",
+    "tanxianjia",
+    "yizeruier",
+    "txj",
+    "yzre",
+    "ezreal",
+    "EZ",
+    "ez",
+    "小黄毛"
+   ]
+  },
+  {
+   "id": "Fiddlesticks",
+   "key": 9,
+   "nameZh": "远古恐惧",
+   "titleZh": "费德提克",
+   "nameEn": "Fiddlesticks",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "MAGE",
+    "SPECIALIST",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "远古恐惧",
+    "费德提克",
+    "yuangukongju",
+    "feidetike",
+    "ygkj",
+    "fdtk",
+    "fiddlesticks"
+   ]
+  },
+  {
+   "id": "Fiora",
+   "key": 114,
+   "nameZh": "无双剑姬",
+   "titleZh": "菲奥娜",
+   "nameEn": "Fiora",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "无双剑姬",
+    "菲奥娜",
+    "wushuangjianji",
+    "feiaona",
+    "wsjj",
+    "fan",
+    "fiora",
+    "剑姬"
+   ]
+  },
+  {
+   "id": "Fizz",
+   "key": 105,
+   "nameZh": "潮汐海灵",
+   "titleZh": "菲兹",
+   "nameEn": "Fizz",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Fighter"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "潮汐海灵",
+    "菲兹",
+    "chaoxihailing",
+    "feizi",
+    "cxhl",
+    "fz",
+    "fizz"
+   ]
+  },
+  {
+   "id": "Galio",
+   "key": 3,
+   "nameZh": "正义巨像",
+   "titleZh": "加里奥",
+   "nameEn": "Galio",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "TANK",
+    "WARDEN"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "正义巨像",
+    "加里奥",
+    "zhengyijuxiang",
+    "jialiao",
+    "zyjx",
+    "jla",
+    "galio"
+   ]
+  },
+  {
+   "id": "Gangplank",
+   "key": 41,
+   "nameZh": "海洋之灾",
+   "titleZh": "普朗克",
+   "nameEn": "Gangplank",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "SPECIALIST"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "海洋之灾",
+    "普朗克",
+    "haiyangzhizai",
+    "pulangke",
+    "hyzz",
+    "plk",
+    "gangplank"
+   ]
+  },
+  {
+   "id": "Garen",
+   "key": 86,
+   "nameZh": "德玛西亚之力",
+   "titleZh": "盖伦",
+   "nameEn": "Garen",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "德玛西亚之力",
+    "盖伦",
+    "demaxiyazhili",
+    "gailun",
+    "dmxyzl",
+    "gl",
+    "garen"
+   ]
+  },
+  {
+   "id": "Gnar",
+   "key": 150,
+   "nameZh": "迷失之牙",
+   "titleZh": "纳尔",
+   "nameEn": "Gnar",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "SPECIALIST",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "迷失之牙",
+    "纳尔",
+    "mishizhiya",
+    "naer",
+    "mszy",
+    "ne",
+    "gnar"
+   ]
+  },
+  {
+   "id": "Gragas",
+   "key": 79,
+   "nameZh": "酒桶",
+   "titleZh": "古拉加斯",
+   "nameEn": "Gragas",
+   "positions": [
+    "jungle",
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Mage"
+   ],
+   "roles": [
+    "FIGHTER",
+    "MAGE",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "酒桶",
+    "古拉加斯",
+    "jiutong",
+    "gulajiasi",
+    "jt",
+    "gljs",
+    "gragas"
+   ]
+  },
+  {
+   "id": "Graves",
+   "key": 104,
+   "nameZh": "法外狂徒",
+   "titleZh": "格雷福斯",
+   "nameEn": "Graves",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN",
+    "SPECIALIST"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "法外狂徒",
+    "格雷福斯",
+    "fawaikuangtu",
+    "geleifusi",
+    "fwkt",
+    "glfs",
+    "graves",
+    "男枪"
+   ]
+  },
+  {
+   "id": "Gwen",
+   "key": 887,
+   "nameZh": "灵罗娃娃",
+   "titleZh": "格温",
+   "nameEn": "Gwen",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "灵罗娃娃",
+    "格温",
+    "lingluowawa",
+    "gewen",
+    "llww",
+    "gw",
+    "gwen"
+   ]
+  },
+  {
+   "id": "Hecarim",
+   "key": 120,
+   "nameZh": "战争之影",
+   "titleZh": "赫卡里姆",
+   "nameEn": "Hecarim",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "战争之影",
+    "赫卡里姆",
+    "zhanzhengzhiying",
+    "hekalimu",
+    "zzzy",
+    "hklm",
+    "hecarim"
+   ]
+  },
+  {
+   "id": "Heimerdinger",
+   "key": 74,
+   "nameZh": "大发明家",
+   "titleZh": "黑默丁格",
+   "nameEn": "Heimerdinger",
+   "positions": [
+    "mid",
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "MAGE",
+    "SPECIALIST",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "大发明家",
+    "黑默丁格",
+    "dafamingjia",
+    "heimodingge",
+    "dfmj",
+    "hmdg",
+    "heimerdinger"
+   ]
+  },
+  {
+   "id": "Hwei",
+   "key": 910,
+   "nameZh": "异画师",
+   "titleZh": "彗",
+   "nameEn": "Hwei",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "异画师",
+    "彗",
+    "yihuashi",
+    "hui",
+    "yhs",
+    "h",
+    "hwei"
+   ]
+  },
+  {
+   "id": "Illaoi",
+   "key": 420,
+   "nameZh": "海兽祭司",
+   "titleZh": "俄洛伊",
+   "nameEn": "Illaoi",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "海兽祭司",
+    "俄洛伊",
+    "haishoujisi",
+    "eluoyi",
+    "hsjs",
+    "ely",
+    "illaoi"
+   ]
+  },
+  {
+   "id": "Irelia",
+   "key": 39,
+   "nameZh": "刀锋舞者",
+   "titleZh": "艾瑞莉娅",
+   "nameEn": "Irelia",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "刀锋舞者",
+    "艾瑞莉娅",
+    "daofengwuzhe",
+    "airuiliya",
+    "dfwz",
+    "arly",
+    "irelia",
+    "刀妹"
+   ]
+  },
+  {
+   "id": "Ivern",
+   "key": 427,
+   "nameZh": "翠神",
+   "titleZh": "艾翁",
+   "nameEn": "Ivern",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "CATCHER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "翠神",
+    "艾翁",
+    "cuishen",
+    "aiweng",
+    "cs",
+    "aw",
+    "ivern"
+   ]
+  },
+  {
+   "id": "Janna",
+   "key": 40,
+   "nameZh": "风暴之怒",
+   "titleZh": "迦娜",
+   "nameEn": "Janna",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "风暴之怒",
+    "迦娜",
+    "fengbaozhinu",
+    "jiana",
+    "fbzn",
+    "jn",
+    "janna"
+   ]
+  },
+  {
+   "id": "JarvanIV",
+   "key": 59,
+   "nameZh": "德玛西亚皇子",
+   "titleZh": "嘉文四世",
+   "nameEn": "Jarvan IV",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "德玛西亚皇子",
+    "嘉文四世",
+    "demaxiyahuangzi",
+    "jiawensishi",
+    "dmxyhz",
+    "jwss",
+    "jarvan iv",
+    "jarvaniv",
+    "皇子"
+   ]
+  },
+  {
+   "id": "Jax",
+   "key": 24,
+   "nameZh": "武器大师",
+   "titleZh": "贾克斯",
+   "nameEn": "Jax",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "武器大师",
+    "贾克斯",
+    "wuqidashi",
+    "jiakesi",
+    "wqds",
+    "jks",
+    "jax"
+   ]
+  },
+  {
+   "id": "Jayce",
+   "key": 126,
+   "nameZh": "未来守护者",
+   "titleZh": "杰斯",
+   "nameEn": "Jayce",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Marksman"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "FIGHTER",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "未来守护者",
+    "杰斯",
+    "weilaishouhuzhe",
+    "jiesi",
+    "wlshz",
+    "js",
+    "jayce"
+   ]
+  },
+  {
+   "id": "Jhin",
+   "key": 202,
+   "nameZh": "戏命师",
+   "titleZh": "烬",
+   "nameEn": "Jhin",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "CATCHER",
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "戏命师",
+    "烬",
+    "ximingshi",
+    "jin",
+    "xms",
+    "j",
+    "jhin"
+   ]
+  },
+  {
+   "id": "Jinx",
+   "key": 222,
+   "nameZh": "暴走萝莉",
+   "titleZh": "金克丝",
+   "nameEn": "Jinx",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "暴走萝莉",
+    "金克丝",
+    "baozouluoli",
+    "jinkesi",
+    "bzll",
+    "jks",
+    "jinx"
+   ]
+  },
+  {
+   "id": "KSante",
+   "key": 897,
+   "nameZh": "纳祖芒荣耀",
+   "titleZh": "奎桑提",
+   "nameEn": "K'Sante",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "SKIRMISHER",
+    "TANK",
+    "WARDEN"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "纳祖芒荣耀",
+    "奎桑提",
+    "nazumangrongyao",
+    "kuisangti",
+    "nzmry",
+    "kst",
+    "k'sante",
+    "ksante"
+   ]
+  },
+  {
+   "id": "Kaisa",
+   "key": 145,
+   "nameZh": "虚空之女",
+   "titleZh": "卡莎",
+   "nameEn": "Kai'Sa",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "虚空之女",
+    "卡莎",
+    "xukongzhinü",
+    "kasha",
+    "xkzn",
+    "ks",
+    "kai'sa",
+    "kaisa"
+   ]
+  },
+  {
+   "id": "Kalista",
+   "key": 429,
+   "nameZh": "复仇之矛",
+   "titleZh": "卡莉丝塔",
+   "nameEn": "Kalista",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "复仇之矛",
+    "卡莉丝塔",
+    "fuchouzhimao",
+    "kalisita",
+    "fczm",
+    "klst",
+    "kalista"
+   ]
+  },
+  {
+   "id": "Karma",
+   "key": 43,
+   "nameZh": "天启者",
+   "titleZh": "卡尔玛",
+   "nameEn": "Karma",
+   "positions": [
+    "mid",
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "BURST",
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "天启者",
+    "卡尔玛",
+    "tianqizhe",
+    "kaerma",
+    "tqz",
+    "kem",
+    "karma"
+   ]
+  },
+  {
+   "id": "Karthus",
+   "key": 30,
+   "nameZh": "死亡颂唱者",
+   "titleZh": "卡尔萨斯",
+   "nameEn": "Karthus",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "死亡颂唱者",
+    "卡尔萨斯",
+    "siwangsongchangzhe",
+    "kaersasi",
+    "swscz",
+    "kess",
+    "karthus"
+   ]
+  },
+  {
+   "id": "Kassadin",
+   "key": 38,
+   "nameZh": "虚空行者",
+   "titleZh": "卡萨丁",
+   "nameEn": "Kassadin",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "虚空行者",
+    "卡萨丁",
+    "xukongxingzhe",
+    "kasading",
+    "xkxz",
+    "ksd",
+    "kassadin"
+   ]
+  },
+  {
+   "id": "Katarina",
+   "key": 55,
+   "nameZh": "不祥之刃",
+   "titleZh": "卡特琳娜",
+   "nameEn": "Katarina",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "不祥之刃",
+    "卡特琳娜",
+    "buxiangzhiren",
+    "katelinna",
+    "bxzr",
+    "ktln",
+    "katarina"
+   ]
+  },
+  {
+   "id": "Kayle",
+   "key": 10,
+   "nameZh": "正义天使",
+   "titleZh": "凯尔",
+   "nameEn": "Kayle",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN",
+    "SPECIALIST"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "正义天使",
+    "凯尔",
+    "zhengyitianshi",
+    "kaier",
+    "zyts",
+    "ke",
+    "kayle"
+   ]
+  },
+  {
+   "id": "Kayn",
+   "key": 141,
+   "nameZh": "影流之镰",
+   "titleZh": "凯隐",
+   "nameEn": "Kayn",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "影流之镰",
+    "凯隐",
+    "yingliuzhilian",
+    "kaiyin",
+    "ylzl",
+    "ky",
+    "kayn"
+   ]
+  },
+  {
+   "id": "Kennen",
+   "key": 85,
+   "nameZh": "狂暴之心",
+   "titleZh": "凯南",
+   "nameEn": "Kennen",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN",
+    "SPECIALIST"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "狂暴之心",
+    "凯南",
+    "kuangbaozhixin",
+    "kainan",
+    "kbzx",
+    "kn",
+    "kennen"
+   ]
+  },
+  {
+   "id": "Khazix",
+   "key": 121,
+   "nameZh": "虚空掠夺者",
+   "titleZh": "卡兹克",
+   "nameEn": "Kha'Zix",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "虚空掠夺者",
+    "卡兹克",
+    "xukonglüeduozhe",
+    "kazike",
+    "xkldz",
+    "kzk",
+    "kha'zix",
+    "khazix"
+   ]
+  },
+  {
+   "id": "Kindred",
+   "key": 203,
+   "nameZh": "永猎双子",
+   "titleZh": "千珏",
+   "nameEn": "Kindred",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "永猎双子",
+    "千珏",
+    "yonglieshuangzi",
+    "qianjue",
+    "ylsz",
+    "qj",
+    "kindred"
+   ]
+  },
+  {
+   "id": "Kled",
+   "key": 240,
+   "nameZh": "暴怒骑士",
+   "titleZh": "克烈",
+   "nameEn": "Kled",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "SKIRMISHER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "暴怒骑士",
+    "克烈",
+    "baonuqishi",
+    "kelie",
+    "bnqs",
+    "kl",
+    "kled"
+   ]
+  },
+  {
+   "id": "KogMaw",
+   "key": 96,
+   "nameZh": "深渊巨口",
+   "titleZh": "克格莫",
+   "nameEn": "Kog'Maw",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "深渊巨口",
+    "克格莫",
+    "shenyuanjukou",
+    "kegemo",
+    "syjk",
+    "kgm",
+    "kog'maw",
+    "kogmaw"
+   ]
+  },
+  {
+   "id": "Leblanc",
+   "key": 7,
+   "nameZh": "诡术妖姬",
+   "titleZh": "乐芙兰",
+   "nameEn": "LeBlanc",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "BURST",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "诡术妖姬",
+    "乐芙兰",
+    "guishuyaoji",
+    "lefulan",
+    "gsyj",
+    "lfl",
+    "leblanc"
+   ]
+  },
+  {
+   "id": "LeeSin",
+   "key": 64,
+   "nameZh": "盲僧",
+   "titleZh": "李青",
+   "nameEn": "Lee Sin",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "盲僧",
+    "李青",
+    "mangseng",
+    "liqing",
+    "ms",
+    "lq",
+    "lee sin",
+    "leesin",
+    "瞎子"
+   ]
+  },
+  {
+   "id": "Leona",
+   "key": 89,
+   "nameZh": "曙光女神",
+   "titleZh": "蕾欧娜",
+   "nameEn": "Leona",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "曙光女神",
+    "蕾欧娜",
+    "shuguangnüshen",
+    "leiouna",
+    "sgns",
+    "lon",
+    "leona",
+    "日女"
+   ]
+  },
+  {
+   "id": "Lillia",
+   "key": 876,
+   "nameZh": "含羞蓓蕾",
+   "titleZh": "莉莉娅",
+   "nameEn": "Lillia",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Mage"
+   ],
+   "roles": [
+    "FIGHTER",
+    "MAGE",
+    "SKIRMISHER"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "含羞蓓蕾",
+    "莉莉娅",
+    "hanxiubeilei",
+    "liliya",
+    "hxbl",
+    "lly",
+    "lillia"
+   ]
+  },
+  {
+   "id": "Lissandra",
+   "key": 127,
+   "nameZh": "冰霜女巫",
+   "titleZh": "丽桑卓",
+   "nameEn": "Lissandra",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "冰霜女巫",
+    "丽桑卓",
+    "bingshuangnüwu",
+    "lisangzhuo",
+    "bsnw",
+    "lsz",
+    "lissandra"
+   ]
+  },
+  {
+   "id": "Locke",
+   "key": 805,
+   "nameZh": "灰烬驱魔人",
+   "titleZh": "洛克",
+   "nameEn": "Locke",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": true,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MAGE"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "灰烬驱魔人",
+    "洛克",
+    "huijinqumoren",
+    "luoke",
+    "hjqmr",
+    "lk",
+    "locke"
+   ]
+  },
+  {
+   "id": "Lucian",
+   "key": 236,
+   "nameZh": "圣枪游侠",
+   "titleZh": "卢锡安",
+   "nameEn": "Lucian",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "圣枪游侠",
+    "卢锡安",
+    "shengqiangyouxia",
+    "luxian",
+    "sqyx",
+    "lxa",
+    "lucian"
+   ]
+  },
+  {
+   "id": "Lulu",
+   "key": 117,
+   "nameZh": "仙灵女巫",
+   "titleZh": "璐璐",
+   "nameEn": "Lulu",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "仙灵女巫",
+    "璐璐",
+    "xianlingnüwu",
+    "lulu",
+    "xlnw",
+    "ll"
+   ]
+  },
+  {
+   "id": "Lux",
+   "key": 99,
+   "nameZh": "光辉女郎",
+   "titleZh": "拉克丝",
+   "nameEn": "Lux",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "BURST",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "光辉女郎",
+    "拉克丝",
+    "guanghuinülang",
+    "lakesi",
+    "ghnl",
+    "lks",
+    "lux"
+   ]
+  },
+  {
+   "id": "Malphite",
+   "key": 54,
+   "nameZh": "熔岩巨兽",
+   "titleZh": "墨菲特",
+   "nameEn": "Malphite",
+   "positions": [
+    "mid",
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "熔岩巨兽",
+    "墨菲特",
+    "rongyanjushou",
+    "mofeite",
+    "ryjs",
+    "mft",
+    "malphite"
+   ]
+  },
+  {
+   "id": "Malzahar",
+   "key": 90,
+   "nameZh": "虚空先知",
+   "titleZh": "玛尔扎哈",
+   "nameEn": "Malzahar",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "BATTLEMAGE",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "虚空先知",
+    "玛尔扎哈",
+    "xukongxianzhi",
+    "maerzhaha",
+    "xkxz",
+    "mezh",
+    "malzahar"
+   ]
+  },
+  {
+   "id": "Maokai",
+   "key": 57,
+   "nameZh": "扭曲树精",
+   "titleZh": "茂凯",
+   "nameEn": "Maokai",
+   "positions": [
+    "jungle",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "扭曲树精",
+    "茂凯",
+    "niuqushujing",
+    "maokai",
+    "nqsj",
+    "mk",
+    "大树"
+   ]
+  },
+  {
+   "id": "MasterYi",
+   "key": 11,
+   "nameZh": "无极剑圣",
+   "titleZh": "易",
+   "nameEn": "Master Yi",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "无极剑圣",
+    "易",
+    "wujijiansheng",
+    "yi",
+    "wjjs",
+    "y",
+    "master yi",
+    "masteryi",
+    "剑圣"
+   ]
+  },
+  {
+   "id": "Mel",
+   "key": 800,
+   "nameZh": "流光镜影",
+   "titleZh": "梅尔",
+   "nameEn": "Mel",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "流光镜影",
+    "梅尔",
+    "liuguangjingying",
+    "meier",
+    "lgjy",
+    "me",
+    "mel"
+   ]
+  },
+  {
+   "id": "Milio",
+   "key": 902,
+   "nameZh": "明烛",
+   "titleZh": "米利欧",
+   "nameEn": "Milio",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "明烛",
+    "米利欧",
+    "mingzhu",
+    "miliou",
+    "mz",
+    "mlo",
+    "milio"
+   ]
+  },
+  {
+   "id": "MissFortune",
+   "key": 21,
+   "nameZh": "赏金猎人",
+   "titleZh": "厄运小姐",
+   "nameEn": "Miss Fortune",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "赏金猎人",
+    "厄运小姐",
+    "shangjinlieren",
+    "eyunxiaojie",
+    "sjlr",
+    "eyxj",
+    "miss fortune",
+    "missfortune",
+    "女枪",
+    "赏金"
+   ]
+  },
+  {
+   "id": "MonkeyKing",
+   "key": 62,
+   "nameZh": "齐天大圣",
+   "titleZh": "孙悟空",
+   "nameEn": "Wukong",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "齐天大圣",
+    "孙悟空",
+    "qitiandasheng",
+    "sunwukong",
+    "qtds",
+    "swk",
+    "wukong",
+    "monkeyking",
+    "猴子"
+   ]
+  },
+  {
+   "id": "Mordekaiser",
+   "key": 82,
+   "nameZh": "铁铠冥魂",
+   "titleZh": "莫德凯撒",
+   "nameEn": "Mordekaiser",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Mage"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "铁铠冥魂",
+    "莫德凯撒",
+    "tiekaiminghun",
+    "modekaisa",
+    "tkmh",
+    "mdks",
+    "mordekaiser"
+   ]
+  },
+  {
+   "id": "Morgana",
+   "key": 25,
+   "nameZh": "堕落天使",
+   "titleZh": "莫甘娜",
+   "nameEn": "Morgana",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "CATCHER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "堕落天使",
+    "莫甘娜",
+    "duoluotianshi",
+    "moganna",
+    "dlts",
+    "mgn",
+    "morgana"
+   ]
+  },
+  {
+   "id": "Naafiri",
+   "key": 950,
+   "nameZh": "百裂冥犬",
+   "titleZh": "纳亚菲利",
+   "nameEn": "Naafiri",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Fighter"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "百裂冥犬",
+    "纳亚菲利",
+    "bailiemingquan",
+    "nayafeili",
+    "blmq",
+    "nyfl",
+    "naafiri"
+   ]
+  },
+  {
+   "id": "Nami",
+   "key": 267,
+   "nameZh": "唤潮鲛姬",
+   "titleZh": "娜美",
+   "nameEn": "Nami",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "唤潮鲛姬",
+    "娜美",
+    "huanchaojiaoji",
+    "namei",
+    "hcjj",
+    "nm",
+    "nami"
+   ]
+  },
+  {
+   "id": "Nasus",
+   "key": 75,
+   "nameZh": "沙漠死神",
+   "titleZh": "内瑟斯",
+   "nameEn": "Nasus",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "沙漠死神",
+    "内瑟斯",
+    "shamosishen",
+    "neisesi",
+    "smss",
+    "nss",
+    "nasus"
+   ]
+  },
+  {
+   "id": "Nautilus",
+   "key": 111,
+   "nameZh": "深海泰坦",
+   "titleZh": "诺提勒斯",
+   "nameEn": "Nautilus",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "深海泰坦",
+    "诺提勒斯",
+    "shenhaitaitan",
+    "nuotilesi",
+    "shtt",
+    "ntls",
+    "nautilus",
+    "泰坦"
+   ]
+  },
+  {
+   "id": "Neeko",
+   "key": 518,
+   "nameZh": "万花通灵",
+   "titleZh": "妮蔻",
+   "nameEn": "Neeko",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "BURST",
+    "CATCHER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "万花通灵",
+    "妮蔻",
+    "wanhuatongling",
+    "nikou",
+    "whtl",
+    "nk",
+    "neeko"
+   ]
+  },
+  {
+   "id": "Nidalee",
+   "key": 76,
+   "nameZh": "狂野女猎手",
+   "titleZh": "奈德丽",
+   "nameEn": "Nidalee",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Mage"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MAGE",
+    "SPECIALIST"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "狂野女猎手",
+    "奈德丽",
+    "kuangyenülieshou",
+    "naideli",
+    "kynls",
+    "ndl",
+    "nidalee",
+    "豹女"
+   ]
+  },
+  {
+   "id": "Nilah",
+   "key": 895,
+   "nameZh": "不羁之悦",
+   "titleZh": "尼菈",
+   "nameEn": "Nilah",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "不羁之悦",
+    "尼菈",
+    "bujizhiyue",
+    "nila",
+    "bjzy",
+    "nl",
+    "nilah"
+   ]
+  },
+  {
+   "id": "Nocturne",
+   "key": 56,
+   "nameZh": "永恒梦魇",
+   "titleZh": "魔腾",
+   "nameEn": "Nocturne",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "永恒梦魇",
+    "魔腾",
+    "yonghengmengyan",
+    "moteng",
+    "yhmy",
+    "mt",
+    "nocturne",
+    "梦魇"
+   ]
+  },
+  {
+   "id": "Nunu",
+   "key": 20,
+   "nameZh": "雪原双子",
+   "titleZh": "努努和威朗普",
+   "nameEn": "Nunu & Willump",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "雪原双子",
+    "努努和威朗普",
+    "xueyuanshuangzi",
+    "nunuheweilangpu",
+    "xysz",
+    "nnhwlp",
+    "nunu & willump",
+    "nunu"
+   ]
+  },
+  {
+   "id": "Olaf",
+   "key": 2,
+   "nameZh": "狂战士",
+   "titleZh": "奥拉夫",
+   "nameEn": "Olaf",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "狂战士",
+    "奥拉夫",
+    "kuangzhanshi",
+    "aolafu",
+    "kzs",
+    "alf",
+    "olaf"
+   ]
+  },
+  {
+   "id": "Orianna",
+   "key": 61,
+   "nameZh": "发条魔灵",
+   "titleZh": "奥莉安娜",
+   "nameEn": "Orianna",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "发条魔灵",
+    "奥莉安娜",
+    "fatiaomoling",
+    "aolianna",
+    "ftml",
+    "alan",
+    "orianna",
+    "发条"
+   ]
+  },
+  {
+   "id": "Ornn",
+   "key": 516,
+   "nameZh": "山隐之焰",
+   "titleZh": "奥恩",
+   "nameEn": "Ornn",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "山隐之焰",
+    "奥恩",
+    "shanyinzhiyan",
+    "aoen",
+    "syzy",
+    "ae",
+    "ornn"
+   ]
+  },
+  {
+   "id": "Pantheon",
+   "key": 80,
+   "nameZh": "不屈之枪",
+   "titleZh": "潘森",
+   "nameEn": "Pantheon",
+   "positions": [
+    "jungle",
+    "mid",
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "不屈之枪",
+    "潘森",
+    "buquzhiqiang",
+    "pansen",
+    "bqzq",
+    "ps",
+    "pantheon"
+   ]
+  },
+  {
+   "id": "Poppy",
+   "key": 78,
+   "nameZh": "圣锤之毅",
+   "titleZh": "波比",
+   "nameEn": "Poppy",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "TANK",
+    "WARDEN"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "圣锤之毅",
+    "波比",
+    "shengchuizhiyi",
+    "bobi",
+    "sczy",
+    "bb",
+    "poppy"
+   ]
+  },
+  {
+   "id": "Pyke",
+   "key": 555,
+   "nameZh": "血港鬼影",
+   "titleZh": "派克",
+   "nameEn": "Pyke",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "CATCHER",
+    "SUPPORT"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "血港鬼影",
+    "派克",
+    "xuegangguiying",
+    "paike",
+    "xggy",
+    "pk",
+    "pyke"
+   ]
+  },
+  {
+   "id": "Qiyana",
+   "key": 246,
+   "nameZh": "元素女皇",
+   "titleZh": "奇亚娜",
+   "nameEn": "Qiyana",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "元素女皇",
+    "奇亚娜",
+    "yuansunühuang",
+    "qiyana",
+    "ysnh",
+    "qyn"
+   ]
+  },
+  {
+   "id": "Quinn",
+   "key": 133,
+   "nameZh": "德玛西亚之翼",
+   "titleZh": "奎因",
+   "nameEn": "Quinn",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MARKSMAN",
+    "SPECIALIST"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "德玛西亚之翼",
+    "奎因",
+    "demaxiyazhiyi",
+    "kuiyin",
+    "dmxyzy",
+    "ky",
+    "quinn"
+   ]
+  },
+  {
+   "id": "Rakan",
+   "key": 497,
+   "nameZh": "幻翎",
+   "titleZh": "洛",
+   "nameEn": "Rakan",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support"
+   ],
+   "roles": [
+    "CATCHER",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "幻翎",
+    "洛",
+    "huanling",
+    "luo",
+    "hl",
+    "l",
+    "rakan"
+   ]
+  },
+  {
+   "id": "Rammus",
+   "key": 33,
+   "nameZh": "披甲龙龟",
+   "titleZh": "拉莫斯",
+   "nameEn": "Rammus",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "披甲龙龟",
+    "拉莫斯",
+    "pijialonggui",
+    "lamosi",
+    "pjlg",
+    "lms",
+    "rammus"
+   ]
+  },
+  {
+   "id": "RekSai",
+   "key": 421,
+   "nameZh": "虚空遁地兽",
+   "titleZh": "雷克塞",
+   "nameEn": "Rek'Sai",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "虚空遁地兽",
+    "雷克塞",
+    "xukongdundishou",
+    "leikesai",
+    "xkdds",
+    "lks",
+    "rek'sai",
+    "reksai",
+    "挖掘机"
+   ]
+  },
+  {
+   "id": "Rell",
+   "key": 526,
+   "nameZh": "镕铁少女",
+   "titleZh": "芮尔",
+   "nameEn": "Rell",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "镕铁少女",
+    "芮尔",
+    "rongtieshaonü",
+    "ruier",
+    "rtsn",
+    "re",
+    "rell"
+   ]
+  },
+  {
+   "id": "Renata",
+   "key": 888,
+   "nameZh": "炼金男爵",
+   "titleZh": "烈娜塔 · 戈拉斯克",
+   "nameEn": "Renata Glasc",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "炼金男爵",
+    "烈娜塔 · 戈拉斯克",
+    "lianjinnanjue",
+    "lienata · gelasike",
+    "ljnj",
+    "lnt · glsk",
+    "renata glasc",
+    "renata"
+   ]
+  },
+  {
+   "id": "Renekton",
+   "key": 58,
+   "nameZh": "荒漠屠夫",
+   "titleZh": "雷克顿",
+   "nameEn": "Renekton",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "荒漠屠夫",
+    "雷克顿",
+    "huangmotufu",
+    "leikedun",
+    "hmtf",
+    "lkd",
+    "renekton",
+    "鳄鱼"
+   ]
+  },
+  {
+   "id": "Rengar",
+   "key": 107,
+   "nameZh": "傲之追猎者",
+   "titleZh": "雷恩加尔",
+   "nameEn": "Rengar",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin",
+    "Fighter"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "傲之追猎者",
+    "雷恩加尔",
+    "aozhizhuiliezhe",
+    "leienjiaer",
+    "azzlz",
+    "leje",
+    "rengar"
+   ]
+  },
+  {
+   "id": "Riven",
+   "key": 92,
+   "nameZh": "放逐之刃",
+   "titleZh": "锐雯",
+   "nameEn": "Riven",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "放逐之刃",
+    "锐雯",
+    "fangzhuzhiren",
+    "ruiwen",
+    "fzzr",
+    "rw",
+    "riven"
+   ]
+  },
+  {
+   "id": "Rumble",
+   "key": 68,
+   "nameZh": "机械公敌",
+   "titleZh": "兰博",
+   "nameEn": "Rumble",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Mage"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "FIGHTER",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "机械公敌",
+    "兰博",
+    "jixiegongdi",
+    "lanbo",
+    "jxgd",
+    "lb",
+    "rumble"
+   ]
+  },
+  {
+   "id": "Ryze",
+   "key": 13,
+   "nameZh": "符文法师",
+   "titleZh": "瑞兹",
+   "nameEn": "Ryze",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "FIGHTER",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "符文法师",
+    "瑞兹",
+    "fuwenfashi",
+    "ruizi",
+    "fwfs",
+    "rz",
+    "ryze"
+   ]
+  },
+  {
+   "id": "Samira",
+   "key": 360,
+   "nameZh": "沙漠玫瑰",
+   "titleZh": "莎弥拉",
+   "nameEn": "Samira",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "沙漠玫瑰",
+    "莎弥拉",
+    "shamomeigui",
+    "shamila",
+    "smmg",
+    "sml",
+    "samira"
+   ]
+  },
+  {
+   "id": "Sejuani",
+   "key": 113,
+   "nameZh": "北地之怒",
+   "titleZh": "瑟庄妮",
+   "nameEn": "Sejuani",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "北地之怒",
+    "瑟庄妮",
+    "beidizhinu",
+    "sezhuangni",
+    "bdzn",
+    "szn",
+    "sejuani",
+    "猪妹"
+   ]
+  },
+  {
+   "id": "Senna",
+   "key": 235,
+   "nameZh": "涤魂圣枪",
+   "titleZh": "赛娜",
+   "nameEn": "Senna",
+   "positions": [
+    "bot",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Marksman"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MARKSMAN",
+    "SUPPORT"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "涤魂圣枪",
+    "赛娜",
+    "dihunshengqiang",
+    "saina",
+    "dhsq",
+    "sn",
+    "senna"
+   ]
+  },
+  {
+   "id": "Seraphine",
+   "key": 147,
+   "nameZh": "星籁歌姬",
+   "titleZh": "萨勒芬妮",
+   "nameEn": "Seraphine",
+   "positions": [
+    "bot",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "BURST",
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "星籁歌姬",
+    "萨勒芬妮",
+    "xinglaigeji",
+    "salefenni",
+    "xlgj",
+    "slfn",
+    "seraphine"
+   ]
+  },
+  {
+   "id": "Sett",
+   "key": 875,
+   "nameZh": "腕豪",
+   "titleZh": "瑟提",
+   "nameEn": "Sett",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "腕豪",
+    "瑟提",
+    "wanhao",
+    "seti",
+    "wh",
+    "st",
+    "sett"
+   ]
+  },
+  {
+   "id": "Shaco",
+   "key": 35,
+   "nameZh": "恶魔小丑",
+   "titleZh": "萨科",
+   "nameEn": "Shaco",
+   "positions": [
+    "jungle",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "恶魔小丑",
+    "萨科",
+    "emoxiaochou",
+    "sake",
+    "emxc",
+    "sk",
+    "shaco"
+   ]
+  },
+  {
+   "id": "Shen",
+   "key": 98,
+   "nameZh": "暮光之眼",
+   "titleZh": "慎",
+   "nameEn": "Shen",
+   "positions": [
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank"
+   ],
+   "roles": [
+    "TANK",
+    "WARDEN"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "暮光之眼",
+    "慎",
+    "muguangzhiyan",
+    "shen",
+    "mgzy",
+    "s"
+   ]
+  },
+  {
+   "id": "Shyvana",
+   "key": 102,
+   "nameZh": "龙血武姬",
+   "titleZh": "希瓦娜",
+   "nameEn": "Shyvana",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "MAGE"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "龙血武姬",
+    "希瓦娜",
+    "longxuewuji",
+    "xiwana",
+    "lxwj",
+    "xwn",
+    "shyvana"
+   ]
+  },
+  {
+   "id": "Singed",
+   "key": 27,
+   "nameZh": "炼金术士",
+   "titleZh": "辛吉德",
+   "nameEn": "Singed",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "SPECIALIST",
+    "TANK"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "炼金术士",
+    "辛吉德",
+    "lianjinshushi",
+    "xinjide",
+    "ljss",
+    "xjd",
+    "singed"
+   ]
+  },
+  {
+   "id": "Sion",
+   "key": 14,
+   "nameZh": "亡灵战神",
+   "titleZh": "赛恩",
+   "nameEn": "Sion",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "亡灵战神",
+    "赛恩",
+    "wanglingzhanshen",
+    "saien",
+    "wlzs",
+    "se",
+    "sion"
+   ]
+  },
+  {
+   "id": "Sivir",
+   "key": 15,
+   "nameZh": "战争女神",
+   "titleZh": "希维尔",
+   "nameEn": "Sivir",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "战争女神",
+    "希维尔",
+    "zhanzhengnüshen",
+    "xiweier",
+    "zzns",
+    "xwe",
+    "sivir"
+   ]
+  },
+  {
+   "id": "Skarner",
+   "key": 72,
+   "nameZh": "上古领主",
+   "titleZh": "斯卡纳",
+   "nameEn": "Skarner",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "上古领主",
+    "斯卡纳",
+    "shanggulingzhu",
+    "sikana",
+    "sglz",
+    "skn",
+    "skarner",
+    "蝎子"
+   ]
+  },
+  {
+   "id": "Smolder",
+   "key": 901,
+   "nameZh": "炽炎雏龙",
+   "titleZh": "斯莫德",
+   "nameEn": "Smolder",
+   "positions": [
+    "bot",
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "炽炎雏龙",
+    "斯莫德",
+    "chiyanchulong",
+    "simode",
+    "cycl",
+    "smd",
+    "smolder"
+   ]
+  },
+  {
+   "id": "Sona",
+   "key": 37,
+   "nameZh": "琴瑟仙女",
+   "titleZh": "娑娜",
+   "nameEn": "Sona",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "琴瑟仙女",
+    "娑娜",
+    "qinsexiannü",
+    "suona",
+    "qsxn",
+    "sn",
+    "sona"
+   ]
+  },
+  {
+   "id": "Soraka",
+   "key": 16,
+   "nameZh": "众星之子",
+   "titleZh": "索拉卡",
+   "nameEn": "Soraka",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "众星之子",
+    "索拉卡",
+    "zhongxingzhizi",
+    "suolaka",
+    "zxzz",
+    "slk",
+    "soraka"
+   ]
+  },
+  {
+   "id": "Swain",
+   "key": 50,
+   "nameZh": "诺克萨斯统领",
+   "titleZh": "斯维因",
+   "nameEn": "Swain",
+   "positions": [
+    "bot",
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "诺克萨斯统领",
+    "斯维因",
+    "nuokesasitongling",
+    "siweiyin",
+    "nksstl",
+    "swy",
+    "swain"
+   ]
+  },
+  {
+   "id": "Sylas",
+   "key": 517,
+   "nameZh": "解脱者",
+   "titleZh": "塞拉斯",
+   "nameEn": "Sylas",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "BURST",
+    "MAGE",
+    "SKIRMISHER"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "解脱者",
+    "塞拉斯",
+    "jietuozhe",
+    "sailasi",
+    "jtz",
+    "sls",
+    "sylas",
+    "偷男"
+   ]
+  },
+  {
+   "id": "Syndra",
+   "key": 134,
+   "nameZh": "暗黑元首",
+   "titleZh": "辛德拉",
+   "nameEn": "Syndra",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "暗黑元首",
+    "辛德拉",
+    "anheiyuanshou",
+    "xindela",
+    "ahys",
+    "xdl",
+    "syndra",
+    "球女"
+   ]
+  },
+  {
+   "id": "TahmKench",
+   "key": 223,
+   "nameZh": "河流之王",
+   "titleZh": "塔姆",
+   "nameEn": "Tahm Kench",
+   "positions": [
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Support"
+   ],
+   "roles": [
+    "SUPPORT",
+    "TANK",
+    "WARDEN"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "河流之王",
+    "塔姆",
+    "heliuzhiwang",
+    "tamu",
+    "hlzw",
+    "tm",
+    "tahm kench",
+    "tahmkench"
+   ]
+  },
+  {
+   "id": "Taliyah",
+   "key": 163,
+   "nameZh": "岩雀",
+   "titleZh": "塔莉垭",
+   "nameEn": "Taliyah",
+   "positions": [
+    "jungle",
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "岩雀",
+    "塔莉垭",
+    "yanque",
+    "taliya",
+    "yq",
+    "tly",
+    "taliyah"
+   ]
+  },
+  {
+   "id": "Talon",
+   "key": 91,
+   "nameZh": "刀锋之影",
+   "titleZh": "泰隆",
+   "nameEn": "Talon",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "刀锋之影",
+    "泰隆",
+    "daofengzhiying",
+    "tailong",
+    "dfzy",
+    "tl",
+    "talon"
+   ]
+  },
+  {
+   "id": "Taric",
+   "key": 44,
+   "nameZh": "瓦洛兰之盾",
+   "titleZh": "塔里克",
+   "nameEn": "Taric",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Tank"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "SUPPORT",
+    "TANK",
+    "WARDEN"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "瓦洛兰之盾",
+    "塔里克",
+    "waluolanzhidun",
+    "talike",
+    "wllzd",
+    "tlk",
+    "taric"
+   ]
+  },
+  {
+   "id": "Teemo",
+   "key": 17,
+   "nameZh": "迅捷斥候",
+   "titleZh": "提莫",
+   "nameEn": "Teemo",
+   "positions": [
+    "jungle",
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "MARKSMAN",
+    "SPECIALIST"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "迅捷斥候",
+    "提莫",
+    "xunjiechihou",
+    "timo",
+    "xjch",
+    "tm",
+    "teemo"
+   ]
+  },
+  {
+   "id": "Thresh",
+   "key": 412,
+   "nameZh": "魂锁典狱长",
+   "titleZh": "锤石",
+   "nameEn": "Thresh",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Tank"
+   ],
+   "roles": [
+    "CATCHER",
+    "SUPPORT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "魂锁典狱长",
+    "锤石",
+    "hunsuodianyuchang",
+    "chuishi",
+    "hsdyc",
+    "cs",
+    "thresh"
+   ]
+  },
+  {
+   "id": "Tristana",
+   "key": 18,
+   "nameZh": "麦林炮手",
+   "titleZh": "崔丝塔娜",
+   "nameEn": "Tristana",
+   "positions": [
+    "bot",
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "麦林炮手",
+    "崔丝塔娜",
+    "mailinpaoshou",
+    "cuisitana",
+    "mlps",
+    "cstn",
+    "tristana",
+    "小炮"
+   ]
+  },
+  {
+   "id": "Trundle",
+   "key": 48,
+   "nameZh": "巨魔之王",
+   "titleZh": "特朗德尔",
+   "nameEn": "Trundle",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "巨魔之王",
+    "特朗德尔",
+    "jumozhiwang",
+    "telangdeer",
+    "jmzw",
+    "tlde",
+    "trundle"
+   ]
+  },
+  {
+   "id": "Tryndamere",
+   "key": 23,
+   "nameZh": "蛮族之王",
+   "titleZh": "泰达米尔",
+   "nameEn": "Tryndamere",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "蛮族之王",
+    "泰达米尔",
+    "manzuzhiwang",
+    "taidamier",
+    "mzzw",
+    "tdme",
+    "tryndamere"
+   ]
+  },
+  {
+   "id": "TwistedFate",
+   "key": 4,
+   "nameZh": "卡牌大师",
+   "titleZh": "崔斯特",
+   "nameEn": "Twisted Fate",
+   "positions": [
+    "bot",
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Marksman"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "卡牌大师",
+    "崔斯特",
+    "kapaidashi",
+    "cuisite",
+    "kpds",
+    "cst",
+    "twisted fate",
+    "twistedfate",
+    "卡牌",
+    "TF",
+    "tf"
+   ]
+  },
+  {
+   "id": "Twitch",
+   "key": 29,
+   "nameZh": "瘟疫之源",
+   "titleZh": "图奇",
+   "nameEn": "Twitch",
+   "positions": [
+    "bot",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "瘟疫之源",
+    "图奇",
+    "wenyizhiyuan",
+    "tuqi",
+    "wyzy",
+    "tq",
+    "twitch"
+   ]
+  },
+  {
+   "id": "Udyr",
+   "key": 77,
+   "nameZh": "兽灵行者",
+   "titleZh": "乌迪尔",
+   "nameEn": "Udyr",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "兽灵行者",
+    "乌迪尔",
+    "shoulingxingzhe",
+    "wudier",
+    "slxz",
+    "wde",
+    "udyr"
+   ]
+  },
+  {
+   "id": "Urgot",
+   "key": 6,
+   "nameZh": "无畏战车",
+   "titleZh": "厄加特",
+   "nameEn": "Urgot",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "无畏战车",
+    "厄加特",
+    "wuweizhanche",
+    "ejiate",
+    "wwzc",
+    "ejt",
+    "urgot"
+   ]
+  },
+  {
+   "id": "Varus",
+   "key": 110,
+   "nameZh": "惩戒之箭",
+   "titleZh": "韦鲁斯",
+   "nameEn": "Varus",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Mage"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "MAGE",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "惩戒之箭",
+    "韦鲁斯",
+    "chengjiezhijian",
+    "weilusi",
+    "cjzj",
+    "wls",
+    "varus"
+   ]
+  },
+  {
+   "id": "Vayne",
+   "key": 67,
+   "nameZh": "暗夜猎手",
+   "titleZh": "薇恩",
+   "nameEn": "Vayne",
+   "positions": [
+    "bot",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "暗夜猎手",
+    "薇恩",
+    "anyelieshou",
+    "weien",
+    "ayls",
+    "we",
+    "vayne"
+   ]
+  },
+  {
+   "id": "Veigar",
+   "key": 45,
+   "nameZh": "邪恶小法师",
+   "titleZh": "维迦",
+   "nameEn": "Veigar",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "邪恶小法师",
+    "维迦",
+    "xieexiaofashi",
+    "weijia",
+    "xexfs",
+    "wj",
+    "veigar"
+   ]
+  },
+  {
+   "id": "Velkoz",
+   "key": 161,
+   "nameZh": "虚空之眼",
+   "titleZh": "维克兹",
+   "nameEn": "Vel'Koz",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "虚空之眼",
+    "维克兹",
+    "xukongzhiyan",
+    "weikezi",
+    "xkzy",
+    "wkz",
+    "vel'koz",
+    "velkoz"
+   ]
+  },
+  {
+   "id": "Vex",
+   "key": 711,
+   "nameZh": "愁云使者",
+   "titleZh": "薇古丝",
+   "nameEn": "Vex",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "愁云使者",
+    "薇古丝",
+    "chouyunshizhe",
+    "weigusi",
+    "cysz",
+    "wgs",
+    "vex"
+   ]
+  },
+  {
+   "id": "Vi",
+   "key": 254,
+   "nameZh": "皮城执法官",
+   "titleZh": "蔚",
+   "nameEn": "Vi",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "DIVER",
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "皮城执法官",
+    "蔚",
+    "pichengzhifaguan",
+    "wei",
+    "pczfg",
+    "w",
+    "vi"
+   ]
+  },
+  {
+   "id": "Viego",
+   "key": 234,
+   "nameZh": "破败之王",
+   "titleZh": "佛耶戈",
+   "nameEn": "Viego",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "破败之王",
+    "佛耶戈",
+    "pobaizhiwang",
+    "foyege",
+    "pbzw",
+    "fyg",
+    "viego",
+    "破败王"
+   ]
+  },
+  {
+   "id": "Viktor",
+   "key": 112,
+   "nameZh": "奥术先驱",
+   "titleZh": "维克托",
+   "nameEn": "Viktor",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "奥术先驱",
+    "维克托",
+    "aoshuxianqu",
+    "weiketuo",
+    "asxq",
+    "wkt",
+    "viktor"
+   ]
+  },
+  {
+   "id": "Vladimir",
+   "key": 8,
+   "nameZh": "猩红收割者",
+   "titleZh": "弗拉基米尔",
+   "nameEn": "Vladimir",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Fighter"
+   ],
+   "roles": [
+    "BATTLEMAGE",
+    "FIGHTER",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "猩红收割者",
+    "弗拉基米尔",
+    "xinghongshougezhe",
+    "fulajimier",
+    "xhsgz",
+    "fljme",
+    "vladimir",
+    "吸血鬼"
+   ]
+  },
+  {
+   "id": "Volibear",
+   "key": 106,
+   "nameZh": "不灭狂雷",
+   "titleZh": "沃利贝尔",
+   "nameEn": "Volibear",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 3,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "不灭狂雷",
+    "沃利贝尔",
+    "bumiekuanglei",
+    "wolibeier",
+    "bmkl",
+    "wlbe",
+    "volibear"
+   ]
+  },
+  {
+   "id": "Warwick",
+   "key": 19,
+   "nameZh": "祖安怒兽",
+   "titleZh": "沃里克",
+   "nameEn": "Warwick",
+   "positions": [
+    "jungle",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "祖安怒兽",
+    "沃里克",
+    "zuannushou",
+    "wolike",
+    "zans",
+    "wlk",
+    "warwick"
+   ]
+  },
+  {
+   "id": "Xayah",
+   "key": 498,
+   "nameZh": "逆羽",
+   "titleZh": "霞",
+   "nameEn": "Xayah",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "逆羽",
+    "霞",
+    "niyu",
+    "xia",
+    "ny",
+    "x",
+    "xayah"
+   ]
+  },
+  {
+   "id": "Xerath",
+   "key": 101,
+   "nameZh": "远古巫灵",
+   "titleZh": "泽拉斯",
+   "nameEn": "Xerath",
+   "positions": [
+    "mid",
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "远古巫灵",
+    "泽拉斯",
+    "yuanguwuling",
+    "zelasi",
+    "ygwl",
+    "zls",
+    "xerath"
+   ]
+  },
+  {
+   "id": "XinZhao",
+   "key": 5,
+   "nameZh": "德邦总管",
+   "titleZh": "赵信",
+   "nameEn": "Xin Zhao",
+   "positions": [
+    "jungle"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "DIVER",
+    "FIGHTER",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "德邦总管",
+    "赵信",
+    "debangzongguan",
+    "zhaoxin",
+    "dbzg",
+    "zx",
+    "xin zhao",
+    "xinzhao"
+   ]
+  },
+  {
+   "id": "Yasuo",
+   "key": 157,
+   "nameZh": "疾风剑豪",
+   "titleZh": "亚索",
+   "nameEn": "Yasuo",
+   "positions": [
+    "bot",
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "疾风剑豪",
+    "亚索",
+    "jifengjianhao",
+    "yasuo",
+    "jfjh",
+    "ys",
+    "快乐风男"
+   ]
+  },
+  {
+   "id": "Yone",
+   "key": 777,
+   "nameZh": "封魔剑魂",
+   "titleZh": "永恩",
+   "nameEn": "Yone",
+   "positions": [
+    "mid",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN",
+    "FIGHTER",
+    "SKIRMISHER"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "封魔剑魂",
+    "永恩",
+    "fengmojianhun",
+    "yongen",
+    "fmjh",
+    "ye",
+    "yone"
+   ]
+  },
+  {
+   "id": "Yorick",
+   "key": 83,
+   "nameZh": "牧魂人",
+   "titleZh": "约里克",
+   "nameEn": "Yorick",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter",
+    "Tank"
+   ],
+   "roles": [
+    "FIGHTER",
+    "JUGGERNAUT",
+    "TANK"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 2,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "牧魂人",
+    "约里克",
+    "muhunren",
+    "yuelike",
+    "mhr",
+    "ylk",
+    "yorick"
+   ]
+  },
+  {
+   "id": "Yunara",
+   "key": 804,
+   "nameZh": "不破之誓",
+   "titleZh": "芸阿娜",
+   "nameEn": "Yunara",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "不破之誓",
+    "芸阿娜",
+    "bupozhishi",
+    "yunana",
+    "bpzs",
+    "yan",
+    "yunara"
+   ]
+  },
+  {
+   "id": "Yuumi",
+   "key": 350,
+   "nameZh": "魔法猫咪",
+   "titleZh": "悠米",
+   "nameEn": "Yuumi",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "ENCHANTER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "魔法猫咪",
+    "悠米",
+    "mofamaomi",
+    "youmi",
+    "mfmm",
+    "ym",
+    "yuumi"
+   ]
+  },
+  {
+   "id": "Zaahen",
+   "key": 904,
+   "nameZh": "不落魔锋",
+   "titleZh": "亚恒",
+   "nameEn": "Zaahen",
+   "positions": [
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER"
+   ],
+   "damage": "ad",
+   "toughness": 2,
+   "control": 1,
+   "mobility": 1,
+   "ranged": false,
+   "search": [
+    "不落魔锋",
+    "亚恒",
+    "buluomofeng",
+    "yaheng",
+    "blmf",
+    "yh",
+    "zaahen"
+   ]
+  },
+  {
+   "id": "Zac",
+   "key": 154,
+   "nameZh": "生化魔人",
+   "titleZh": "扎克",
+   "nameEn": "Zac",
+   "positions": [
+    "jungle",
+    "support",
+    "top"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Tank",
+    "Fighter"
+   ],
+   "roles": [
+    "FIGHTER",
+    "TANK",
+    "VANGUARD"
+   ],
+   "damage": "ap",
+   "toughness": 3,
+   "control": 3,
+   "mobility": 2,
+   "ranged": false,
+   "search": [
+    "生化魔人",
+    "扎克",
+    "shenghuamoren",
+    "zhake",
+    "shmr",
+    "zk",
+    "zac"
+   ]
+  },
+  {
+   "id": "Zed",
+   "key": 238,
+   "nameZh": "影流之主",
+   "titleZh": "劫",
+   "nameEn": "Zed",
+   "positions": [
+    "jungle",
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Assassin"
+   ],
+   "roles": [
+    "ASSASSIN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 1,
+   "mobility": 3,
+   "ranged": false,
+   "search": [
+    "影流之主",
+    "劫",
+    "yingliuzhizhu",
+    "jie",
+    "ylzz",
+    "j",
+    "zed"
+   ]
+  },
+  {
+   "id": "Zeri",
+   "key": 221,
+   "nameZh": "祖安花火",
+   "titleZh": "泽丽",
+   "nameEn": "Zeri",
+   "positions": [
+    "bot"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Marksman"
+   ],
+   "roles": [
+    "MARKSMAN"
+   ],
+   "damage": "ad",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 3,
+   "ranged": true,
+   "search": [
+    "祖安花火",
+    "泽丽",
+    "zuanhuahuo",
+    "zeli",
+    "zahh",
+    "zl",
+    "zeri"
+   ]
+  },
+  {
+   "id": "Ziggs",
+   "key": 115,
+   "nameZh": "爆破鬼才",
+   "titleZh": "吉格斯",
+   "nameEn": "Ziggs",
+   "positions": [
+    "bot",
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "ARTILLERY",
+    "MAGE"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "爆破鬼才",
+    "吉格斯",
+    "baopoguicai",
+    "jigesi",
+    "bpgc",
+    "jgs",
+    "ziggs"
+   ]
+  },
+  {
+   "id": "Zilean",
+   "key": 26,
+   "nameZh": "时光守护者",
+   "titleZh": "基兰",
+   "nameEn": "Zilean",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Support",
+    "Mage"
+   ],
+   "roles": [
+    "MAGE",
+    "SPECIALIST",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "时光守护者",
+    "基兰",
+    "shiguangshouhuzhe",
+    "jilan",
+    "sgshz",
+    "jl",
+    "zilean"
+   ]
+  },
+  {
+   "id": "Zoe",
+   "key": 142,
+   "nameZh": "暮光星灵",
+   "titleZh": "佐伊",
+   "nameEn": "Zoe",
+   "positions": [
+    "mid"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage"
+   ],
+   "roles": [
+    "BURST",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 2,
+   "mobility": 2,
+   "ranged": true,
+   "search": [
+    "暮光星灵",
+    "佐伊",
+    "muguangxingling",
+    "zuoyi",
+    "mgxl",
+    "zy",
+    "zoe"
+   ]
+  },
+  {
+   "id": "Zyra",
+   "key": 143,
+   "nameZh": "荆棘之兴",
+   "titleZh": "婕拉",
+   "nameEn": "Zyra",
+   "positions": [
+    "support"
+   ],
+   "positionsGuessed": false,
+   "tags": [
+    "Mage",
+    "Support"
+   ],
+   "roles": [
+    "CATCHER",
+    "MAGE",
+    "SUPPORT"
+   ],
+   "damage": "ap",
+   "toughness": 1,
+   "control": 3,
+   "mobility": 1,
+   "ranged": true,
+   "search": [
+    "荆棘之兴",
+    "婕拉",
+    "jingjizhixing",
+    "jiela",
+    "jjzx",
+    "jl",
+    "zyra"
+   ]
+  }
+ ]
+}
