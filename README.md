@@ -2,6 +2,8 @@
 
 英雄联盟 BP 助手，面向职业 / 青训战队教练。网页版，手动录入 BP，每一步给出可解释的 Pick / Ban 推荐，支持普通 BP 和全局 BP（Fearless Draft，默认硬全局）。
 
+教练使用说明见 [docs/USAGE.md](docs/USAGE.md)。
+
 ## 运行
 
 ```bash
