@@ -152,6 +152,16 @@ h4 { margin: 0 0 6px; font-size: 14px; }
 .reasons .good { color: #8fd9b3; }
 .reasons .bad { color: #f2a0a2; }
 .reasons .info { color: var(--muted); }
+.pair-box h4 { margin: 8px 0 4px; font-size: 13px; color: var(--muted); }
+.pair-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.pair-list > li {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 5px 6px; border-radius: 6px;
+  background: var(--panel-2); border: 1px solid transparent; cursor: pointer;
+}
+.pair-list > li:hover { border-color: var(--accent); }
+.pair-list .score { margin-left: auto; color: var(--accent); font-variant-numeric: tabular-nums; }
+.pair-list .reasons { width: 100%; }
+.pair-champ { display: flex; align-items: center; gap: 4px; }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 10px; color: var(--muted); padding: 0 4px; }
 .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; }
 
@@ -170,6 +180,10 @@ h4 { margin: 0 0 6px; font-size: 14px; }
 .pool-editor { display: grid; grid-template-columns: 220px 1fr; gap: 12px; padding: 12px 16px; }
 .team-list { display: flex; flex-direction: column; gap: 6px; }
 .team-list button { display: flex; justify-content: space-between; text-align: left; }
+.pro-picker { display: flex; flex-direction: column; gap: 4px; }
+.pro-picker > button { width: 100%; }
+.pro-picker-body { display: flex; flex-direction: column; gap: 4px; padding: 6px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; max-height: 360px; overflow-y: auto; }
+.pro-picker-body p { margin: 2px 0 0; }
 .file { position: relative; cursor: pointer; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; text-align: center; }
 .file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 .team-detail-head { display: flex; gap: 8px; margin-bottom: 6px; }
@@ -195,7 +209,7 @@ h4 { margin: 0 0 6px; font-size: 14px; }
 
 .settings { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 12px 16px; max-width: 1200px; }
 .settings section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
-.weight-row { display: grid; grid-template-columns: 1fr 160px 32px; gap: 8px; align-items: center; width: 100%; }
+.weight-row { display: grid; grid-template-columns: 1fr 160px 40px; gap: 8px; align-items: center; width: 100%; }
 .weight-row label { display: flex; flex-direction: column; }
 .check { display: flex; gap: 6px; align-items: center; }
 .data-info { display: grid; grid-template-columns: 80px 1fr; gap: 4px 8px; margin: 0; }

@@ -11,7 +11,7 @@ import {
   seriesScore,
   unavailableReason,
 } from './engine/rules';
-import { recommend, teamRoles, type ScoreContext } from './engine/scorer';
+import { recommend, recommendPairs, teamRoles, type ScoreContext } from './engine/scorer';
 import type { FearlessMode, Role, SeriesFormat, Side, TeamId } from './engine/types';
 import { cloneMatch, startNextGame, useAppState, type AppState } from './store';
 import { ChampionGrid } from './ui/ChampionGrid';
@@ -45,7 +45,8 @@ export default function App() {
     () => ({ match, gameIndex, champions: CHAMPIONS, stats, teams, weights: state.weights, strictPool: state.strictPool }),
     [match, gameIndex, stats, teams, state.weights, state.strictPool],
   );
-  const rec = useMemo(() => recommend(ctx, 8), [ctx]);
+  const rec = useMemo(() => recommend(ctx, { limit: 8, lookahead: state.lookahead }), [ctx, state.lookahead]);
+  const pairs = useMemo(() => recommendPairs(ctx, 4), [ctx]);
   const roles = useMemo(() => teamRoles(ctx), [ctx]);
   const locked = useMemo(
     () => ({ ally: lockedFor(match, gameIndex, 'ally'), enemy: lockedFor(match, gameIndex, 'enemy') }),
@@ -63,9 +64,9 @@ export default function App() {
     });
   }, [setState]);
 
-  const act = (champion: string | null) => {
+  const act = (...champions: (string | null)[]) => {
     if (!view.next || !isLastGame) return;
-    updateMatch((m) => m.games[gameIndex].actions.push({ champion }));
+    updateMatch((m) => champions.forEach((champion) => m.games[gameIndex].actions.push({ champion })));
   };
   const undo = useCallback(() => updateMatch((m) => m.games[gameIndex].actions.pop()), [updateMatch, gameIndex]);
 
@@ -266,7 +267,14 @@ export default function App() {
               )}
             </div>
             <aside className="side">
-              <Recommendations rec={rec} lang={state.lang} onApply={(id) => act(id)} hasStats={!!stats} />
+              <Recommendations
+                rec={rec}
+                pairs={pairs}
+                lang={state.lang}
+                onApply={(id) => act(id)}
+                onApplyPair={(ids) => act(...ids)}
+                hasStats={!!stats}
+              />
               <FactorLegend />
             </aside>
           </div>

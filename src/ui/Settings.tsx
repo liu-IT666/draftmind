@@ -19,6 +19,7 @@ const HELP: Record<keyof Weights, string> = {
   deny: '对方想要的英雄（对方英雄池 + 版本强度）；硬全局下额外加成',
   exposure: '选了以后容易被对方剩余英雄针对（扣分）',
   scarcity: '全局 BP 下用掉选手少有的强势英雄的代价（扣分）',
+  lookahead: '模拟对方下一手：选了以后对方最佳应对越强，扣分越多',
   threat: 'Ban 时额外考虑对我方已选英雄的克制',
 };
 
@@ -50,11 +51,15 @@ export function Settings({ state, stats, onChange }: Props) {
               {FACTOR_LABELS[k]}
               <span className="muted small">{HELP[k]}</span>
             </label>
-            <input type="range" min={0} max={3} step={0.1} value={state.weights[k]} onChange={(e) => setWeight(k, Number(e.target.value))} />
-            <span className="num">{state.weights[k].toFixed(1)}</span>
+            <input type="range" min={0} max={5} step={0.05} value={state.weights[k]} onChange={(e) => setWeight(k, Number(e.target.value))} />
+            <span className="num">{state.weights[k].toFixed(2)}</span>
           </div>
         ))}
         <button onClick={() => onChange({ weights: DEFAULT_WEIGHTS })}>恢复默认</button>
+        <label className="check">
+          <input type="checkbox" checked={state.lookahead} onChange={(e) => onChange({ lookahead: e.target.checked })} />
+          前瞻搜索：Pick 推荐模拟对方的最佳应对（前 10 名重排）
+        </label>
         <label className="check">
           <input type="checkbox" checked={state.strictPool} onChange={(e) => onChange({ strictPool: e.target.checked })} />
           仅推荐英雄池内的英雄（选手英雄池为空时不限制）
@@ -91,7 +96,7 @@ export function Settings({ state, stats, onChange }: Props) {
           <input type="file" accept="application/json" onChange={(e) => e.target.files?.[0] && importStats(e.target.files[0])} />
         </label>
         {state.customStats && <button onClick={() => onChange({ customStats: null })}>恢复内置数据</button>}
-        <p className="muted small">统计数据由 pipeline/leaguepedia_stats.py 生成，格式见 README。</p>
+        <p className="muted small">内置统计数据由 pipeline/oracles_elixir.py 从 Oracle's Elixir 职业赛数据生成，格式见 README。</p>
       </section>
     </div>
   );

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { CHAMPIONS, CHAMP_BY_ID, matchesSearch } from '../data';
+import { loadProTeams, proTeamToTeam, type ProTeamsFile } from '../data/proTeams';
 import { sampleTeams } from '../data/sampleTeams';
 import { ROLE_LABELS } from '../engine/scorer';
 import { ROLES, type Role, type Team } from '../engine/types';
@@ -53,6 +54,57 @@ function AddChampion({ role, exclude, onAdd }: { role: Role; exclude: Record<str
               {!c.positions.includes(role) && <em className="muted"> 非常规位置</em>}
             </button>
           ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+const LEAGUE_ORDER = ['LPL', 'LCK', 'LEC', 'LCS', 'LCP', 'CBLOL', 'LCKC'];
+
+/** Pick a pro team and copy its recent pick history in as a starting pool. */
+function ProTeamPicker({ onPick }: { onPick: (t: Team) => void }) {
+  const [data, setData] = useState<ProTeamsFile | null>(null);
+  const [open, setOpen] = useState(false);
+  const [league, setLeague] = useState('LPL');
+  const leagues = useMemo(() => {
+    const all = [...new Set(data?.teams.map((t) => t.league) ?? [])];
+    const rank = (l: string) => (LEAGUE_ORDER.includes(l) ? LEAGUE_ORDER.indexOf(l) : LEAGUE_ORDER.length);
+    return all.sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
+  }, [data]);
+  const toggle = async () => {
+    if (!data) setData(await loadProTeams());
+    setOpen(!open);
+  };
+  return (
+    <div className="pro-picker">
+      <button className="ghost" title="用职业战队近期比赛里各位置选过的英雄生成英雄池" onClick={toggle}>
+        + 导入职业战队
+      </button>
+      {open && data && (
+        <div className="pro-picker-body">
+          <select value={league} onChange={(e) => setLeague(e.target.value)}>
+            {leagues.map((l) => (
+              <option key={l}>{l}</option>
+            ))}
+          </select>
+          {data.teams
+            .filter((t) => t.league === league)
+            .map((t) => (
+              <button
+                key={t.name}
+                onClick={() => {
+                  onPick(proTeamToTeam(t, (id) => !!CHAMP_BY_ID[id]));
+                  setOpen(false);
+                }}
+              >
+                {t.name}
+                <span className="muted small">{t.lastGame.slice(5)}</span>
+              </button>
+            ))}
+          <p className="muted small">
+            {data.since} 起的比赛，选 1 次 = 3 星、2 次 = 4 星、3 次以上 = 5 星。来源 {data.license}。
+          </p>
         </div>
       )}
     </div>
@@ -120,6 +172,12 @@ export function PoolEditor({ teams, lang, onChange }: Props) {
         >
           + 加载示例战队
         </button>
+        <ProTeamPicker
+          onPick={(t) => {
+            onChange([...teams, t]);
+            setSelected(t.id);
+          }}
+        />
         <label className="ghost file">
           导入 JSON
           <input type="file" accept="application/json" onChange={(e) => e.target.files?.[0] && importTeam(e.target.files[0])} />

@@ -20,7 +20,8 @@ export function roleAffinity(champ: Champion, role: Role, team?: Team): number {
 
 /**
  * Assigns picked champions to roles. Manual overrides are kept; the rest are placed by
- * the best total affinity (at most 5! orderings, so brute force is fine).
+ * the best total affinity among plausible assignments (at most 5! orderings, so brute
+ * force is fine).
  */
 export function assignRoles(
   picks: string[],
@@ -42,7 +43,13 @@ export function assignRoles(
   let best: Role[] = [];
   let bestScore = -Infinity;
   for (const perm of permutations(free, rest.length)) {
-    const s = perm.reduce((sum, r, i) => sum + (champs[rest[i]] ? roleAffinity(champs[rest[i]], r, team) : 0), 0);
+    // A role the champion cannot play costs more than any affinity gain, so a fully
+    // plausible assignment always wins when one exists.
+    const s = perm.reduce((sum, r, i) => {
+      const c = champs[rest[i]];
+      if (!c) return sum;
+      return sum + roleAffinity(c, r, team) - (plausible(c, r, team) ? 0 : 100);
+    }, 0);
     if (s > bestScore) {
       bestScore = s;
       best = perm;

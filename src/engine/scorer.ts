@@ -11,20 +11,27 @@ export type FactorKey =
   | 'flex'
   | 'deny'
   | 'exposure'
-  | 'scarcity';
+  | 'scarcity'
+  | 'lookahead';
 
 export type Weights = Record<FactorKey, number> & { threat: number };
 
+/**
+ * Tuned on August 2026 pro drafts (scripts/backtest.ts --tune) and checked on September to
+ * October, including Worlds: see README. Synergy and comp fit are kept small rather than at
+ * the tuned 0, which costs under half a point of hit rate and keeps pair scoring meaningful.
+ */
 export const DEFAULT_WEIGHTS: Weights = {
-  meta: 1,
-  proficiency: 1.5,
-  counter: 1,
-  synergy: 0.6,
-  compFit: 0.8,
-  flex: 0.4,
-  deny: 0.6,
-  exposure: 0.4,
-  scarcity: 0.5,
+  meta: 4,
+  proficiency: 1,
+  counter: 0.5,
+  synergy: 0.5,
+  compFit: 0.25,
+  flex: 0,
+  deny: 0.5,
+  exposure: 3,
+  scarcity: 0.25,
+  lookahead: 0.5,
   threat: 0.5,
 };
 
@@ -38,6 +45,7 @@ export const FACTOR_LABELS: Record<FactorKey | 'threat', string> = {
   deny: '抢夺',
   exposure: '暴露风险',
   scarcity: '稀缺成本',
+  lookahead: '前瞻',
   threat: '针对我方',
 };
 
@@ -85,6 +93,19 @@ export function isEngage(c: Champion) {
 }
 export const isFrontline = (c: Champion) => c.toughness >= 3;
 
+/**
+ * Adds the roles a champion is actually played in at pro level (e.g. Naafiri jungle,
+ * Kai'Sa top) to its usual positions, so role filtering does not hide real flex picks.
+ */
+export function withProPositions(c: Champion, stats: StatsPack | null): Champion {
+  const s = stats?.champions[c.id];
+  if (!s || s.picks < 2) return c;
+  const extra = (Object.entries(s.roles) as [Role, number][])
+    .filter(([r, n]) => !c.positions.includes(r) && n >= 2 && n >= s.picks * 0.1)
+    .map(([r]) => r);
+  return extra.length ? { ...c, positions: [...c.positions, ...extra] } : c;
+}
+
 interface TeamState {
   picks: string[];
   roles: Record<string, Role>;
@@ -98,9 +119,10 @@ class Scorer {
   readonly state: Record<TeamId, TeamState>;
   readonly maxPresence: number;
   readonly remaining: number;
+  private availCache: Partial<Record<TeamId, Set<string>>> = {};
 
   constructor(readonly ctx: ScoreContext) {
-    this.byId = Object.fromEntries(ctx.champions.map((c) => [c.id, c]));
+    this.byId = Object.fromEntries(ctx.champions.map((c) => [c.id, withProPositions(c, ctx.stats)]));
     const game = ctx.match.games[ctx.gameIndex];
     this.view = replay(game, getOrder(ctx.match.orderId));
     const mk = (t: TeamId): TeamState => {
@@ -117,6 +139,10 @@ class Scorer {
     this.remaining = gamesRemainingAfter(ctx.match, ctx.gameIndex);
   }
 
+  available(team: TeamId): Set<string> {
+    return (this.availCache[team] ??= availableFor(this.ctx.match, this.ctx.gameIndex, team, Object.keys(this.byId)));
+  }
+
   name(id: string) {
     const c = this.byId[id];
     return c ? c.titleZh : id;
@@ -130,7 +156,7 @@ class Scorer {
     const s = this.ctx.stats?.champions[c.id];
     if (!this.ctx.stats) return { value: 0.5 };
     if (!s) return { value: 0.1 };
-    let value = 0.7 * Math.min(1, s.presence / (this.maxPresence * 0.8)) + 0.3 * clamp((s.winRate - 0.4) / 0.2, 0, 1);
+    let value = 0.85 * (s.presence / this.maxPresence) + 0.15 * clamp((s.winRate - 0.4) / 0.2, 0, 1);
     if (s.picks >= 3) value *= 0.4 + 0.6 * ((s.roles[role] ?? 0) / s.picks);
     return {
       value,
@@ -246,7 +272,7 @@ class Scorer {
   exposure(team: TeamId, c: Champion, role: Role): { value: number; reason?: Reason } {
     const opp = other(team);
     if (this.lanePartner(opp, role)) return { value: 0 };
-    const avail = availableFor(this.ctx.match, this.ctx.gameIndex, opp, Object.keys(this.byId));
+    const avail = this.available(opp);
     let worst: [string, number] | null = null;
     for (const [x, row] of Object.entries(this.ctx.stats?.counters ?? {})) {
       const m = row[c.id];
@@ -283,10 +309,11 @@ class Scorer {
     };
   }
 
-  pick(team: TeamId, c: Champion, opts: { forBan?: boolean } = {}): Recommendation | null {
+  pick(team: TeamId, c: Champion, opts: { forBan?: boolean; role?: Role } = {}): Recommendation | null {
     const st = this.state[team];
     const w = this.ctx.weights;
     let roles = candidateRoles(c, st.picks, this.byId, st.team, st.overrides);
+    if (opts.role) roles = roles.filter((r) => r === opts.role);
     if (this.ctx.strictPool) {
       roles = roles.filter((r) => {
         const pool = this.pool(team, r);
@@ -330,7 +357,8 @@ class Scorer {
       );
       if (!opts.forBan) {
         const opp = other(team);
-        const it = this.interest(opp, c);
+        // Soft fearless: a champion the opponent already used is no longer theirs to take.
+        const it = this.available(opp).has(c.id) ? this.interest(opp, c) : { value: 0, role: undefined, stars: 0 };
         const hardBonus = this.ctx.match.mode === 'hard' && fearlessActive(this.ctx.match) && this.remaining > 0 && it.stars >= 4;
         add(
           'deny',
@@ -357,7 +385,7 @@ class Scorer {
     const opp = other(team);
     const theirs = this.pick(opp, c, { forBan: true });
     if (!theirs) return null;
-    const threat = theirs.parts.counter && theirs.parts.counter > 0 ? theirs.parts.counter / (this.ctx.weights.counter || 1) : 0;
+    const threat = Math.max(0, this.counter(opp, c, theirs.role!).value);
     const parts = { ...theirs.parts, threat: threat * this.ctx.weights.threat };
     const total = Object.values(parts).reduce((a, b) => a + (b ?? 0), 0);
     const oppPlayer = this.state[opp].team?.players[theirs.role!]?.name;
@@ -369,19 +397,28 @@ class Scorer {
   }
 }
 
-/**
- * Ranks candidates for the next step of the current game. For the enemy's turns this is a
- * prediction of what they are likely to do, using the enemy pool.
- */
-export function recommend(ctx: ScoreContext, limit = 8): { team: TeamId; type: 'ban' | 'pick'; items: Recommendation[] } | null {
+export interface RecommendOptions {
+  limit?: number;
+  /** Re-rank the top picks by simulating the opponent's best reply (shallow search). */
+  lookahead?: boolean;
+  /** How many top candidates the lookahead re-ranks. */
+  beam?: number;
+}
+
+export interface RecommendResult {
+  team: TeamId;
+  type: 'ban' | 'pick';
+  items: Recommendation[];
+}
+
+function rankAll(ctx: ScoreContext): RecommendResult | null {
   const sc = new Scorer(ctx);
   const next = sc.view.next;
   if (!next) return null;
   const team = next.teamId;
-  const ids = Object.keys(sc.byId);
   // A ban only matters if the opponent could still pick the champion.
-  const pool = availableFor(ctx.match, ctx.gameIndex, next.type === 'ban' ? other(team) : team, ids);
-  const takenNow = availableFor(ctx.match, ctx.gameIndex, team, ids);
+  const pool = sc.available(next.type === 'ban' ? other(team) : team);
+  const takenNow = sc.available(team);
   const items: Recommendation[] = [];
   for (const id of pool) {
     if (next.type === 'ban' && ctx.match.mode !== 'soft' && !takenNow.has(id)) continue;
@@ -390,7 +427,130 @@ export function recommend(ctx: ScoreContext, limit = 8): { team: TeamId; type: '
     if (r) items.push(r);
   }
   items.sort((a, b) => b.total - a.total);
-  return { team, type: next.type, items: items.slice(0, limit) };
+  return { team, type: next.type, items };
+}
+
+/** The context after one more action in the current game. */
+export function withAction(ctx: ScoreContext, champion: string | null): ScoreContext {
+  const match: Match = JSON.parse(JSON.stringify(ctx.match));
+  match.games[ctx.gameIndex].actions.push({ champion });
+  return { ...ctx, match };
+}
+
+/**
+ * Best value the opponent can get from their next action after we take `champion`.
+ * If we act again first (a double pick), our own greedy best is played before theirs.
+ */
+function opponentReply(ctx: ScoreContext, team: TeamId, champion: string): { value: number; champion?: string } | null {
+  let next = withAction(ctx, champion);
+  for (let guard = 0; guard < 3; guard++) {
+    const r = rankAll(next);
+    if (!r || r.items.length === 0) return null;
+    if (r.team !== team) return { value: r.items[0].total, champion: r.items[0].champion };
+    next = withAction(next, r.items[0].champion);
+  }
+  return null;
+}
+
+/**
+ * Ranks candidates for the next step of the current game. For the enemy's turns this is a
+ * prediction of what they are likely to do, using the enemy pool.
+ *
+ * With lookahead, the top `beam` picks are re-scored by how good the opponent's best reply
+ * is afterwards: a pick that leaves the opponent a strong answer loses points relative to
+ * the candidate that leaves them the weakest one.
+ */
+export function recommend(ctx: ScoreContext, opts: RecommendOptions | number = {}): RecommendResult | null {
+  const { limit = 8, lookahead = false, beam = 10 } = typeof opts === 'number' ? { limit: opts } : opts;
+  const r = rankAll(ctx);
+  if (!r) return null;
+  if (lookahead && r.type === 'pick' && ctx.weights.lookahead > 0) {
+    const head = r.items.slice(0, beam);
+    const replies = head.map((it) => opponentReply(ctx, r.team, it.champion));
+    const values = replies.filter(Boolean).map((x) => x!.value);
+    if (values.length > 1) {
+      const best = Math.min(...values);
+      head.forEach((it, i) => {
+        const rep = replies[i];
+        if (!rep) return;
+        const penalty = (rep.value - best) * ctx.weights.lookahead;
+        it.parts = { ...it.parts, lookahead: -penalty || 0 };
+        it.total -= penalty;
+        if (rep.champion) {
+          const name = champLabel(ctx, rep.champion);
+          it.reasons = [
+            ...it.reasons,
+            penalty < 0.05
+              ? { tone: 'good', text: `对方后手应对空间最小（最佳回应 ${name}）` }
+              : { tone: 'info', text: `对方可能回应 ${name}` },
+          ];
+        }
+      });
+      // Candidates outside the beam keep their greedy score minus the worst penalty seen,
+      // so the re-ranked head cannot be overtaken by unexamined candidates for free.
+      const worst = (Math.max(...values) - best) * ctx.weights.lookahead;
+      r.items.slice(beam).forEach((it) => (it.total -= worst));
+      r.items.sort((a, b) => b.total - a.total);
+    }
+  }
+  return { ...r, items: r.items.slice(0, limit) };
+}
+
+function champLabel(ctx: ScoreContext, id: string) {
+  return ctx.champions.find((c) => c.id === id)?.titleZh ?? id;
+}
+
+export interface PairRecommendation {
+  champions: [string, string];
+  roles: [Role | undefined, Role | undefined];
+  players: [string | undefined, string | undefined];
+  total: number;
+  reasons: Reason[];
+}
+
+/**
+ * When the acting team has two picks in a row (second-pick team's 2nd/3rd pick, first-pick
+ * team's 4th/5th, ...), scores the two picks together: the second is evaluated with the
+ * first already on the team, so synergy and comp needs between them count.
+ */
+export function recommendPairs(ctx: ScoreContext, limit = 5, beam = 10): PairRecommendation[] | null {
+  const order = getOrder(ctx.match.orderId);
+  const view = replay(ctx.match.games[ctx.gameIndex], order);
+  const s1 = view.next;
+  const s2 = order.steps[view.stepIndex + 1];
+  if (!s1 || !s2 || s1.type !== 'pick' || s2.type !== 'pick' || s2.team !== s1.team) return null;
+  const first = rankAll(ctx);
+  if (!first) return null;
+  const team = first.team;
+  const sc0 = new Scorer(ctx);
+  // The same two champions can be reached in either order; keep the order that scores best.
+  const best = new Map<string, PairRecommendation>();
+  for (const a of first.items.slice(0, beam)) {
+    const afterA = withAction(ctx, a.champion);
+    const sc1 = new Scorer(afterA);
+    const second = rankAll(afterA);
+    for (const b of second?.items.slice(0, beam) ?? []) {
+      // A flex first pick may move to make room for the second, so assign roles for both
+      // together and score each pick in the seat it actually ends up in. A pair that puts
+      // a champion in a seat the pool rules out (strict pool) is not offered.
+      const roles = teamRoles(withAction(afterA, b.champion))[team];
+      const ra = roles[a.champion] === a.role ? a : sc0.pick(team, sc0.byId[a.champion], { role: roles[a.champion] });
+      const rb = roles[b.champion] === b.role ? b : sc1.pick(team, sc1.byId[b.champion], { role: roles[b.champion] });
+      if (!ra || !rb) continue;
+      const key = [a.champion, b.champion].sort().join('+');
+      const total = ra.total + rb.total;
+      if ((best.get(key)?.total ?? -Infinity) >= total) continue;
+      const extra = rb.reasons.filter((x) => x.text.includes(champLabel(ctx, a.champion)) || x.text.startsWith('补足'));
+      best.set(key, {
+        champions: [a.champion, b.champion],
+        roles: [ra.role, rb.role],
+        players: [ra.player, rb.player],
+        total,
+        reasons: extra,
+      });
+    }
+  }
+  return [...best.values()].sort((x, y) => y.total - x.total).slice(0, limit);
 }
 
 /** Role assignment for display, shared with the UI. */
