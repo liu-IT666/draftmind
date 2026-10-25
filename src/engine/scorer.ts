@@ -304,10 +304,11 @@ class Scorer {
     };
   }
 
-  pick(team: TeamId, c: Champion, opts: { forBan?: boolean } = {}): Recommendation | null {
+  pick(team: TeamId, c: Champion, opts: { forBan?: boolean; role?: Role } = {}): Recommendation | null {
     const st = this.state[team];
     const w = this.ctx.weights;
     let roles = candidateRoles(c, st.picks, this.byId, st.team, st.overrides);
+    if (opts.role) roles = roles.filter((r) => r === opts.role);
     if (this.ctx.strictPool) {
       roles = roles.filter((r) => {
         const pool = this.pool(team, r);
@@ -351,7 +352,8 @@ class Scorer {
       );
       if (!opts.forBan) {
         const opp = other(team);
-        const it = this.interest(opp, c);
+        // Soft fearless: a champion the opponent already used is no longer theirs to take.
+        const it = this.available(opp).has(c.id) ? this.interest(opp, c) : { value: 0, role: undefined, stars: 0 };
         const hardBonus = this.ctx.match.mode === 'hard' && fearlessActive(this.ctx.match) && this.remaining > 0 && it.stars >= 4;
         add(
           'deny',
@@ -514,29 +516,36 @@ export function recommendPairs(ctx: ScoreContext, limit = 5, beam = 10): PairRec
   if (!s1 || !s2 || s1.type !== 'pick' || s2.type !== 'pick' || s2.team !== s1.team) return null;
   const first = rankAll(ctx);
   if (!first) return null;
-  const seen = new Set<string>();
-  const pairs: PairRecommendation[] = [];
+  const team = first.team;
+  const sc0 = new Scorer(ctx);
+  // The same two champions can be reached in either order; keep the order that scores best.
+  const best = new Map<string, PairRecommendation>();
   for (const a of first.items.slice(0, beam)) {
-    const second = rankAll(withAction(ctx, a.champion));
+    const afterA = withAction(ctx, a.champion);
+    const sc1 = new Scorer(afterA);
+    const second = rankAll(afterA);
     for (const b of second?.items.slice(0, beam) ?? []) {
+      // A flex first pick may move to make room for the second, so assign roles for both
+      // together and score each pick in the seat it actually ends up in. A pair that puts
+      // a champion in a seat the pool rules out (strict pool) is not offered.
+      const roles = teamRoles(withAction(afterA, b.champion))[team];
+      const ra = roles[a.champion] === a.role ? a : sc0.pick(team, sc0.byId[a.champion], { role: roles[a.champion] });
+      const rb = roles[b.champion] === b.role ? b : sc1.pick(team, sc1.byId[b.champion], { role: roles[b.champion] });
+      if (!ra || !rb) continue;
       const key = [a.champion, b.champion].sort().join('+');
-      if (seen.has(key)) continue;
-      seen.add(key);
-      const extra = b.reasons.filter((x) => x.text.includes(champLabel(ctx, a.champion)) || x.text.startsWith('补足'));
-      // A flex first pick may move to make room for the second, so assign roles for both together.
-      const roles = teamRoles(withAction(withAction(ctx, a.champion), b.champion))[first.team];
-      const players = [roles[a.champion], roles[b.champion]].map((r) => (r && ctx.teams[first.team]?.players[r]?.name) || undefined);
-      pairs.push({
+      const total = ra.total + rb.total;
+      if ((best.get(key)?.total ?? -Infinity) >= total) continue;
+      const extra = rb.reasons.filter((x) => x.text.includes(champLabel(ctx, a.champion)) || x.text.startsWith('补足'));
+      best.set(key, {
         champions: [a.champion, b.champion],
-        roles: [roles[a.champion], roles[b.champion]],
-        players: [players[0], players[1]],
-        total: a.total + b.total,
+        roles: [ra.role, rb.role],
+        players: [ra.player, rb.player],
+        total,
         reasons: extra,
       });
     }
   }
-  pairs.sort((x, y) => y.total - x.total);
-  return pairs.slice(0, limit);
+  return [...best.values()].sort((x, y) => y.total - x.total).slice(0, limit);
 }
 
 /** Role assignment for display, shared with the UI. */

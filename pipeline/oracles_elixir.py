@@ -31,6 +31,7 @@ SOURCE = "Oracle's Elixir 职业赛"
 LICENSE = "oracleselixir.com"
 # Top leagues and international events, used for backtest drafts and team pools.
 MAJOR = ["LPL", "LCK", "LEC", "LCS", "LCP", "CBLOL", "WLDs", "MSI", "FST", "EWC", "LCKC"]
+INTERNATIONAL = {"WLDs", "MSI", "FST", "EWC"}
 
 
 def load_csv(path, year):
@@ -40,7 +41,21 @@ def load_csv(path, year):
             os.makedirs(os.path.dirname(path), exist_ok=True)
             url = f"https://drive.usercontent.google.com/download?id={DRIVE_IDS[year]}&export=download&confirm=t"
             print(f"downloading {url}", file=sys.stderr)
-            urllib.request.urlretrieve(url, path)
+            # Download beside the cache and move into place only once it looks complete, so a
+            # cut transfer or a Drive quota page is never reused as the CSV.
+            tmp = path + ".part"
+            try:
+                urllib.request.urlretrieve(url, tmp)
+                with open(tmp, "rb") as f:
+                    head = f.readline()
+                    f.seek(-1, os.SEEK_END)
+                    tail = f.read(1)
+                if not head.startswith(b"gameid,") or tail != b"\n":
+                    raise RuntimeError(f"{url} did not return a complete Oracle's Elixir CSV (quota page or cut transfer?)")
+                os.replace(tmp, path)
+            finally:
+                if os.path.exists(tmp):
+                    os.remove(tmp)
     with open(path, newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
@@ -80,7 +95,8 @@ def cmd_stats(args, rows, cid):
         t0 = g["teams"][0]
         teams = []
         for t in g["teams"]:
-            roles = {ROLE[p["position"]]: cid(p["champion"]) for p in g["players"] if p["teamid"] == t["teamid"]}
+            # By side, not teamid: some games have an empty teamid on every row.
+            roles = {ROLE[p["position"]]: cid(p["champion"]) for p in g["players"] if p["side"] == t["side"]}
             teams.append({"win": t["result"] == "1", "roles": roles})
         if any(len(t["roles"]) != 5 for t in teams):
             continue
@@ -104,7 +120,7 @@ def cmd_drafts(args, rows, cid):
         second = next(t for t in g["teams"] if t is not first)
 
         def side(t):
-            by_champ = {p["champion"]: ROLE[p["position"]] for p in g["players"] if p["teamid"] == t["teamid"]}
+            by_champ = {p["champion"]: ROLE[p["position"]] for p in g["players"] if p["side"] == t["side"]}
             picks = [t[f"pick{i}"] for i in range(1, 6)]
             return {
                 "team": t["teamname"],
@@ -132,6 +148,8 @@ def cmd_teams(args, rows, cid):
     teams = {}
     for g in collect_games(rows, args.since, args.until, args.league or MAJOR):
         for p in g["players"]:
+            if not p["teamid"]:
+                continue  # no way to tell which team this is
             t = teams.setdefault(p["teamid"], {"name": p["teamname"], "leagues": defaultdict(int), "last": "", "roles": {}})
             t["name"] = p["teamname"]
             if p["position"] == "top":
@@ -153,9 +171,16 @@ def cmd_teams(args, rows, cid):
             players[role] = {"name": name, "games": pl["games"],
                              "champions": dict(sorted(pl["champions"].items(), key=lambda kv: -kv[1][0]))}
         if len(players) == 5:
-            # Home league = where the team played most (not an international event it ended on).
-            league = max(t["leagues"].items(), key=lambda kv: kv[1])[0]
+            # Home league = the domestic league the team played most in; an international
+            # event only when the team played nothing else in the window.
+            domestic = {k: v for k, v in t["leagues"].items() if k not in INTERNATIONAL}
+            league = max((domestic or t["leagues"]).items(), key=lambda kv: kv[1])[0]
             out.append({"name": t["name"], "league": league, "lastGame": t["last"][:10], "players": players})
+    # Oracle's Elixir sometimes gives a team a separate id at an international event; drop
+    # that entry when a domestic team has mostly the same starters.
+    roster = lambda t: {p["name"].lower() for p in t["players"].values()}
+    out = [t for t in out if t["league"] not in INTERNATIONAL
+           or not any(o is not t and o["league"] not in INTERNATIONAL and len(roster(o) & roster(t)) >= 3 for o in out)]
     out.sort(key=lambda t: (t["league"], t["name"]))
     write(args.out or os.path.join(HERE, "..", "src", "data", "proTeams.json"),
           {"source": SOURCE, "license": LICENSE, "since": args.since, "teams": out}, compact=True)

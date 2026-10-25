@@ -27,6 +27,20 @@ export interface AppState {
 
 const KEY = 'draftmind.state.v1';
 const WEIGHTS_VERSION = 2;
+/** DEFAULT_WEIGHTS of earlier releases, to tell untouched weights from ones the user set. */
+const PREVIOUS_DEFAULTS: Record<number, Partial<Weights>> = {
+  1: { meta: 1, proficiency: 1.5, counter: 1, synergy: 0.6, compFit: 0.8, flex: 0.4, deny: 0.6, exposure: 0.4, scarcity: 0.5, threat: 0.5 },
+};
+
+/** Saved weights the user never changed move to the new defaults; changed ones are kept. */
+export function migrateWeights(saved: Partial<Weights> = {}, version: number): Weights {
+  const old = PREVIOUS_DEFAULTS[version] ?? {};
+  const out = { ...DEFAULT_WEIGHTS };
+  for (const [k, v] of Object.entries(saved) as [keyof Weights, number][]) {
+    if (k in out && (version === WEIGHTS_VERSION || old[k] !== v)) out[k] = v;
+  }
+  return out;
+}
 
 export function emptyTeam(name: string): Team {
   const players = Object.fromEntries(ROLES.map((r) => [r, { name: '', pool: {} }])) as Team['players'];
@@ -59,7 +73,7 @@ function load(): AppState {
     if (raw) {
       const s = JSON.parse(raw) as AppState;
       if (s.version === 1) {
-        const weights = s.weightsVersion === WEIGHTS_VERSION ? { ...DEFAULT_WEIGHTS, ...s.weights } : DEFAULT_WEIGHTS;
+        const weights = migrateWeights(s.weights, s.weightsVersion ?? 1);
         return { ...initial(), ...s, weights, weightsVersion: WEIGHTS_VERSION };
       }
     }

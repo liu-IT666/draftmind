@@ -107,16 +107,30 @@ def main():
     # ScoreboardGames lists each team's picks in role order (top, jungle, mid, bot, support),
     # so one table gives bans, picks, roles and the winner.
     games = [] if args.offline else fetch_all("ScoreboardGames=SG",
-                      "SG.GameId,SG.Patch,SG.Tournament,SG.Team1Bans,SG.Team2Bans,SG.Team1Picks,SG.Team2Picks,SG.Winner",
+                      "SG.GameId,SG.DateTime_UTC,SG.Patch,SG.Tournament,SG.Team1Bans,SG.Team2Bans,SG.Team1Picks,SG.Team2Picks,SG.Winner",
                       where, "SG.GameId")
+    undated = False
     if args.include_cached or args.offline:
+        # Cached pages come from earlier queries with other filters, so apply this run's
+        # league and date filters again. Pages cached before the date field was fetched
+        # cannot be date-filtered; the pack then does not claim a start date.
         seen = {g["GameId"] for g in games}
         for name in sorted(os.listdir(CACHE)):
+            if not name.endswith(".json"):
+                continue  # e.g. the Oracle's Elixir CSV
             with open(os.path.join(CACHE, name)) as f:
                 for g in json.load(f):
-                    if "Team1Picks" in g and g["GameId"] not in seen:
-                        seen.add(g["GameId"])
-                        games.append(g)
+                    if "Team1Picks" not in g or g["GameId"] in seen:
+                        continue
+                    if args.league and not any((g.get("Tournament") or "").startswith(p) for p in args.league):
+                        continue
+                    date = g.get("DateTime UTC")
+                    if date is None:
+                        undated = True
+                    elif date < args.since:
+                        continue
+                    seen.add(g["GameId"])
+                    games.append(g)
 
     def patch_key(p):
         try:
@@ -144,7 +158,7 @@ def main():
             "teams": [{"win": g["Winner"] == side, "roles": {r: cid(n) for r, n in zip(order, names)}}
                       for side, names in (("1", t1), ("2", t2))],
         })
-    pack = build_pack(parsed, "Leaguepedia 职业赛", "CC BY-SA 3.0 (lol.fandom.com)", since=args.since)
+    pack = build_pack(parsed, "Leaguepedia 职业赛", "CC BY-SA 3.0 (lol.fandom.com)", since=None if undated else args.since)
     n_games = len(parsed)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)), exist_ok=True)
     with open(args.out, "w") as f:

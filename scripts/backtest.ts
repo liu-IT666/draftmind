@@ -4,7 +4,7 @@
  *   npx vite-node scripts/backtest.ts -- [options]
  *
  *   --drafts FILE       drafts from `pipeline/oracles_elixir.py drafts` (default pipeline/data/drafts.json)
- *   --stats FILE        stats pack built only from games before --from (see README)
+ *   --stats FILE        required: stats pack built only from games before --from (see README)
  *   --from DATE         evaluate games on or after this date, e.g. 2026-09-01
  *   --to DATE           ... and before this date
  *   --league CODE       only evaluate this league (repeatable), e.g. LPL
@@ -13,7 +13,7 @@
  *   --tune              coordinate-descent the weights on the evaluated games and print them
  *   --keys a,b          only tune these weights (e.g. --lookahead --keys lookahead)
  *   --weights JSON      evaluate with these weights (e.g. ones tuned on an earlier patch range)
- *   --sample N          use every Nth ban/pick only (faster tuning)
+ *   --sample N          evaluate every Nth game only (faster tuning)
  *   --json FILE         also write the metrics as JSON
  *
  * For every ban and pick in every evaluated game it asks the engine for a full ranking of the
@@ -55,9 +55,13 @@ const opt = (name: string, dflt?: string) => {
 
 const champions = JSON.parse(readFileSync('src/data/champions.json', 'utf8')).champions as Champion[];
 const drafts = JSON.parse(readFileSync(opt('drafts', 'pipeline/data/drafts.json')!, 'utf8')).games as Draft[];
-const stats = JSON.parse(readFileSync(opt('stats', 'pipeline/data/stats-train.json')!, 'utf8')) as StatsPack;
-
 const from = opt('from', '2026-09-01')!;
+const statsPath = opt('stats');
+if (!statsPath) throw new Error('--stats FILE is required: a pack built only from games before --from (see README)');
+const stats = JSON.parse(readFileSync(statsPath, 'utf8')) as StatsPack & { until?: string };
+if (!stats.until || stats.until > from) {
+  throw new Error(`stats pack must end on or before --from ${from} (it ends ${stats.until ?? 'never'}): evaluation games would leak in`);
+}
 const to = opt('to', '9999')!;
 const leagues = argv.flatMap((a, i) => (argv[i - 1] === '--league' ? [a] : []));
 const inEval = (d: Draft) => d.date >= from && d.date < to && (leagues.length === 0 || leagues.includes(d.league));
@@ -131,14 +135,30 @@ interface Case {
   type: 'ban' | 'pick';
 }
 
-function buildCases(weights: Weights, usePools: boolean): Case[] {
+/**
+ * Best-of-N of a finished series: it ends when one team reaches ceil(N/2) wins, so the
+ * winner's win count gives N without looking at how long the series ran (a 3-0 is a BO5).
+ */
+function seriesFormat(series: Draft[]): Match['format'] {
+  const wins: Record<string, number> = {};
+  for (const d of series) {
+    const w = d.winner === 'first' ? d.first.team : d.winner === 'second' ? d.second.team : null;
+    if (w) wins[w] = (wins[w] ?? 0) + 1;
+  }
+  const maxWins = Math.max(0, ...Object.values(wins));
+  const byLength = series.length <= 1 ? 1 : series.length <= 3 ? 3 : 5;
+  return Math.max(byLength, maxWins >= 3 ? 5 : maxWins === 2 ? 3 : 1) as Match['format'];
+}
+
+function buildCases(weights: Weights, usePools: boolean, sample: number): Case[] {
   const history = drafts.filter((d) => d.date < from);
   const cases: Case[] = [];
+  let evalGameNo = 0;
   for (const series of groupSeries(drafts)) {
     if (!series.some(inEval)) continue;
     const allyName = series[0].first.team;
     const enemyName = series[0].second.team;
-    const format = (series.length <= 1 ? 1 : series.length <= 3 ? 3 : 5) as Match['format'];
+    const format = seriesFormat(series);
     const match: Match = { format, mode: detectMode(series), orderId: 'tournament', games: [], disabled: [] };
     const teams: Record<TeamId, Team | undefined> = usePools
       ? { ally: teamFromHistory(allyName, history), enemy: teamFromHistory(enemyName, history) }
@@ -158,12 +178,20 @@ function buildCases(weights: Weights, usePools: boolean): Case[] {
       const actions = actionsOf(d);
       match.games.push(game);
       const gameIndex = match.games.length - 1;
-      if (inEval(d)) {
+      if (inEval(d) && evalGameNo++ % sample === 0) {
         const order = getOrder('tournament').steps;
         actions.forEach((actual, i) => {
           if (actual) {
             const m: Match = JSON.parse(JSON.stringify(match));
-            m.games[gameIndex].actions = actions.slice(0, i).map((champion) => ({ champion }));
+            const g = m.games[gameIndex];
+            g.actions = actions.slice(0, i).map((champion) => ({ champion }));
+            // Lanes are only known for the acting team's own picks so far; the opponent's
+            // flex picks and anything not yet picked are left for the engine to infer.
+            const acting: TeamId = order[i].team === 'F' ? firstPick : firstPick === 'ally' ? 'enemy' : 'ally';
+            const done = new Set(actions.slice(0, i));
+            g.roleOverrides = {
+              [acting]: Object.fromEntries(Object.entries(game.roleOverrides[acting] ?? {}).filter(([c]) => done.has(c))),
+            };
             cases.push({
               ctx: { match: m, gameIndex, champions, stats, teams, weights, strictPool: false },
               actual,
@@ -242,7 +270,7 @@ console.log(
 console.log(`drafts ${drafts.length}, evaluated games ${evalGames}, stats games ${stats.games}, pools ${usePools}, lookahead ${lookahead}`);
 let weights: Weights = { ...DEFAULT_WEIGHTS, ...(opt('weights') ? JSON.parse(opt('weights')!) : {}) };
 const sample = Number(opt('sample', '1'));
-const cases = buildCases(weights, usePools).filter((_, i) => i % sample === 0);
+const cases = buildCases(weights, usePools, sample);
 const t0 = performance.now();
 const before = evaluate(cases, weights, lookahead);
 print(`${opt('weights') ? 'given' : 'default'} weights (${((performance.now() - t0) / 1000).toFixed(1)}s)`, before);
@@ -253,7 +281,7 @@ if (flag('tune')) {
   const keys = (Object.keys(DEFAULT_WEIGHTS) as (keyof Weights)[]).filter(
     (k) => (only ? only.includes(k) : k !== 'lookahead' || lookahead),
   );
-  const grid = [0, 0.25, 0.5, 1, 1.5, 2, 3];
+  const grid = [0, 0.25, 0.5, 1, 1.5, 2, 3, 4];
   let best = objective(before);
   for (let pass = 0; pass < 2; pass++) {
     let improved = false;
