@@ -96,7 +96,7 @@ export function Settings({ state, stats, onChange }: Props) {
           <input type="file" accept="application/json" onChange={(e) => e.target.files?.[0] && importStats(e.target.files[0])} />
         </label>
         {state.customStats && <button onClick={() => onChange({ customStats: null })}>恢复内置数据</button>}
-        <p className="muted small">统计数据由 pipeline/leaguepedia_stats.py 生成，格式见 README。</p>
+        <p className="muted small">内置统计数据由 pipeline/oracles_elixir.py 从 Oracle's Elixir 职业赛数据生成，格式见 README。</p>
       </section>
     </div>
   );

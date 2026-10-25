@@ -50,7 +50,9 @@ Ban 分 = 对方视角的 Pick 分 + λ × 对我方已选英雄的克制。软�
 ## 数据
 
 - `src/data/champions.json` + `public/champions/*.png`：`npm run data:champions [版本号]` 从 Data Dragon（zh_CN / en_US）和 Meraki Analytics（位置、伤害类型）生成。俗称和位置补丁在 `scripts/champion-overrides.mjs`。
-- `src/data/stats/pro.json`：`python3 pipeline/leaguepedia_stats.py --since 2026-07-15` 从 Leaguepedia 拉职业赛对局生成（BP 率、胜率、对位、协同）。Leaguepedia 限流很严（实测每 500 局要等十几到二十分钟），脚本会退避重试并把分页缓存在 `pipeline/.cache/`。可以用 `--league LPL --league LDL` 只拉指定赛事，用 `--include-cached` 把之前各次运行缓存的分页合并进来，用 `--max-wait` 限制等待时长，大范围数据可以分几次拉完。数据遵循 CC BY-SA 3.0。
+- `src/data/stats/pro.json`：`python3 pipeline/oracles_elixir.py stats --since 2026-07-15` 从 [Oracle's Elixir](https://oracleselixir.com) 的年度职业赛 CSV 生成（BP 率、胜率、对位、协同），覆盖 LPL、LCK、LEC 等全部有记录的赛区。CSV 第一次运行时下载到 `pipeline/.cache/`，可用 `--until`、`--league` 限定范围。数据使用需注明来源 oracleselixir.com。
+- `src/data/proTeams.json`：`python3 pipeline/oracles_elixir.py teams --since 2026-06-01` 生成一级联赛各战队每个位置选过的英雄，英雄池页「导入职业战队」用它生成初始英雄池（选过 1 次 = 3 星，2 次 = 4 星，3 次以上 = 5 星）。
+- `pipeline/leaguepedia_stats.py`：Leaguepedia 版本的统计生成脚本（CC BY-SA 3.0），限流很严，作为备用。
 - 也可以在设置页导入同格式的统计 JSON（例如以后用外服高分段路人局数据生成的）。
 
 统计数据格式：
@@ -67,17 +69,21 @@ Ban 分 = 对方视角的 Pick 分 + λ × 对我方已选英雄的克制。软�
 ## 回测
 
 ```bash
-python3 pipeline/leaguepedia_drafts.py --since 2026-06-01            # 一级联赛完整 BP 顺序 → pipeline/data/drafts.json
-python3 pipeline/leaguepedia_stats.py --offline --patch-max 26.16 \
-  --out pipeline/data/stats-train.json                                # 只用较早版本的统计，避免信息泄露
-npx vite-node scripts/backtest.ts -- --from 26.17 --to 26.18 --pools --tune     # 在验证集上调权重
-npx vite-node scripts/backtest.ts -- --from 26.19 --pools --weights '{...}'      # 在测试集上评估
+python3 pipeline/oracles_elixir.py drafts --since 2026-06-01 --out pipeline/data/drafts.json   # 一级联赛完整 BP 顺序
+python3 pipeline/oracles_elixir.py stats --since 2026-05-15 --until 2026-08-01 --out pipeline/data/stats-before-0801.json
+python3 pipeline/oracles_elixir.py stats --since 2026-06-15 --until 2026-09-01 --out pipeline/data/stats-before-0901.json
+# 验证集（8 月）：只用 8 月 1 日之前的统计，调权重
+npx vite-node scripts/backtest.ts -- --from 2026-08-01 --to 2026-09-01 --stats pipeline/data/stats-before-0801.json --pools --tune --sample 3
+# 测试集（9–10 月，含世界赛）：只用 9 月 1 日之前的统计，评估调好的权重
+npx vite-node scripts/backtest.ts -- --from 2026-09-01 --stats pipeline/data/stats-before-0901.json --pools --weights '{...}'
 ```
 
-对每一局的每个 Ban / Pick，按当时的局面（含系列赛前几局的全局锁定）让引擎给行动方的全部选项排序，统计实际选择落在第几名：Top 1 / 5 / 10 命中率和 MRR，并和「只按职业赛 BP 率排序」的基线对比。`--pools` 用每支队伍在评估区间之前的职业赛选择推出英雄池（选过 1 次 = 3 星，2 次 = 4 星，3 次以上 = 5 星）。系列赛里同一英雄出现两次就按普通 BP 处理，否则按硬全局。
+对每一局的每个 Ban / Pick，按当时的局面（含系列赛前几局的全局锁定）让引擎给行动方的全部选项排序，统计实际选择落在第几名：Top 1 / 5 / 10 命中率和 MRR，并和「只按职业赛 BP 率排序」的基线对比。统计数据只用评估区间之前的比赛，避免信息泄露。`--pools` 用每支队伍在评估区间之前的职业赛选择推出英雄池（和「导入职业战队」同一套星级）。系列赛里同一英雄出现两次就按普通 BP 处理，否则按硬全局。`--lookahead` 打开前瞻（慢，配合 `--sample N` 每 N 局取 1 局），`--league LPL` 只看指定赛区，`--json FILE` 输出结果。
+
+BACKTEST_RESULTS
 
 ## 后续
 
-LCU 自动同步（桌面端）、外服高分段路人局统计、用职业赛数据自动生成对手英雄池、多人同步。
+LCU 自动同步（桌面端）、外服高分段路人局统计、按对手近期 BP 习惯预测对方下一手、多人同步。
 
 DraftMind isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.

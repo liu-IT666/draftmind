@@ -16,6 +16,8 @@ export interface AppState {
   match: Match;
   gameIndex: number;
   weights: Weights;
+  /** Bumped when DEFAULT_WEIGHTS are retuned, so saved states pick up the new defaults. */
+  weightsVersion: number;
   strictPool: boolean;
   /** Shallow search over the opponent's best reply when ranking picks. */
   lookahead: boolean;
@@ -24,6 +26,7 @@ export interface AppState {
 }
 
 const KEY = 'draftmind.state.v1';
+const WEIGHTS_VERSION = 2;
 
 export function emptyTeam(name: string): Team {
   const players = Object.fromEntries(ROLES.map((r) => [r, { name: '', pool: {} }])) as Team['players'];
@@ -43,6 +46,7 @@ function initial(): AppState {
     match: newMatch(3, 'hard', { allySide: 'blue', firstPick: 'ally' }),
     gameIndex: 0,
     weights: DEFAULT_WEIGHTS,
+    weightsVersion: WEIGHTS_VERSION,
     strictPool: true,
     lookahead: true,
     customStats: null,
@@ -54,7 +58,10 @@ function load(): AppState {
     const raw = localStorage.getItem(KEY);
     if (raw) {
       const s = JSON.parse(raw) as AppState;
-      if (s.version === 1) return { ...initial(), ...s, weights: { ...DEFAULT_WEIGHTS, ...s.weights } };
+      if (s.version === 1) {
+        const weights = s.weightsVersion === WEIGHTS_VERSION ? { ...DEFAULT_WEIGHTS, ...s.weights } : DEFAULT_WEIGHTS;
+        return { ...initial(), ...s, weights, weightsVersion: WEIGHTS_VERSION };
+      }
     }
   } catch {
     // Storage unavailable or corrupt: start fresh.

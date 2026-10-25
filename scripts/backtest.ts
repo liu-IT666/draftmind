@@ -3,15 +3,17 @@
  *
  *   npx vite-node scripts/backtest.ts -- [options]
  *
- *   --drafts FILE       drafts from pipeline/leaguepedia_drafts.py (default pipeline/data/drafts.json)
- *   --stats FILE        stats pack built only from games before the evaluated ones
- *                       (default pipeline/data/stats-train.json, see README)
- *   --from PATCH        evaluate games on this patch or later (default 26.17)
- *   --to PATCH          ... and on this patch or earlier
+ *   --drafts FILE       drafts from `pipeline/oracles_elixir.py drafts` (default pipeline/data/drafts.json)
+ *   --stats FILE        stats pack built only from games before --from (see README)
+ *   --from DATE         evaluate games on or after this date, e.g. 2026-09-01
+ *   --to DATE           ... and before this date
+ *   --league CODE       only evaluate this league (repeatable), e.g. LPL
  *   --pools             give each team a hero pool derived from its drafts before --from
  *   --lookahead         re-rank picks with the opponent-reply search
  *   --tune              coordinate-descent the weights on the evaluated games and print them
+ *   --keys a,b          only tune these weights (e.g. --lookahead --keys lookahead)
  *   --weights JSON      evaluate with these weights (e.g. ones tuned on an earlier patch range)
+ *   --sample N          use every Nth ban/pick only (faster tuning)
  *   --json FILE         also write the metrics as JSON
  *
  * For every ban and pick in every evaluated game it asks the engine for a full ranking of the
@@ -20,6 +22,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { getOrder, newGame } from '../src/engine/rules';
+import { starsFromGames } from '../src/data/proTeams';
 import { DEFAULT_WEIGHTS, recommend, type ScoreContext, type Weights } from '../src/engine/scorer';
 import type { Champion, FearlessMode, Game, Match, Role, StatsPack, Team, TeamId } from '../src/engine/types';
 import { ROLES } from '../src/engine/types';
@@ -35,6 +38,8 @@ interface Draft {
   date: string;
   patch: string;
   tournament: string;
+  league: string;
+  game: number;
   firstPickSide: 'blue' | 'red';
   first: DraftSide;
   second: DraftSide;
@@ -52,10 +57,10 @@ const champions = JSON.parse(readFileSync('src/data/champions.json', 'utf8')).ch
 const drafts = JSON.parse(readFileSync(opt('drafts', 'pipeline/data/drafts.json')!, 'utf8')).games as Draft[];
 const stats = JSON.parse(readFileSync(opt('stats', 'pipeline/data/stats-train.json')!, 'utf8')) as StatsPack;
 
-const patchKey = (p: string) => p.split('.').map(Number).reduce((a, b) => a * 1000 + b, 0);
-const from = patchKey(opt('from', '26.17')!);
-const to = opt('to') ? patchKey(opt('to')!) : Infinity;
-const inEval = (d: Draft) => d.patch && patchKey(d.patch) >= from && patchKey(d.patch) <= to;
+const from = opt('from', '2026-09-01')!;
+const to = opt('to', '9999')!;
+const leagues = argv.flatMap((a, i) => (argv[i - 1] === '--league' ? [a] : []));
+const inEval = (d: Draft) => d.date >= from && d.date < to && (leagues.length === 0 || leagues.includes(d.league));
 
 /** Turns per-team ban/pick lists into the 20-step action log, given the tournament order. */
 function actionsOf(d: Draft): (string | null)[] {
@@ -68,14 +73,26 @@ function actionsOf(d: Draft): (string | null)[] {
   });
 }
 
-/** Series = games sharing a GameId apart from the trailing game number. */
+/**
+ * Series = consecutive games between the same two teams in the same league, at most 8 hours
+ * apart, with increasing game numbers.
+ */
 function groupSeries(all: Draft[]): Draft[][] {
-  const map = new Map<string, Draft[]>();
-  for (const d of all) {
-    const key = d.gameId.replace(/_\d+$/, '');
-    map.set(key, [...(map.get(key) ?? []), d]);
+  const series: Draft[][] = [];
+  const open = new Map<string, Draft[]>();
+  for (const d of [...all].sort((a, b) => a.date.localeCompare(b.date))) {
+    const key = `${d.league}|${[d.first.team, d.second.team].sort().join('|')}`;
+    const cur = open.get(key);
+    const last = cur?.[cur.length - 1];
+    const hours = last ? (Date.parse(d.date.replace(' ', 'T') + 'Z') - Date.parse(last.date.replace(' ', 'T') + 'Z')) / 36e5 : Infinity;
+    if (cur && last && hours <= 8 && d.game > last.game) cur.push(d);
+    else {
+      const s = [d];
+      series.push(s);
+      open.set(key, s);
+    }
   }
-  return [...map.values()].map((g) => g.sort((a, b) => a.date.localeCompare(b.date)));
+  return series;
 }
 
 /** Hard fearless unless the same champion was picked twice in the series. */
@@ -103,7 +120,7 @@ function teamFromHistory(name: string, history: Draft[]): Team {
     }
   }
   for (const r of ROLES) {
-    for (const [c, n] of Object.entries(counts[r])) players[r].pool[c] = Math.min(5, 2 + n);
+    for (const [c, n] of Object.entries(counts[r])) players[r].pool[c] = starsFromGames(n);
   }
   return { id: name, name, players };
 }
@@ -115,7 +132,7 @@ interface Case {
 }
 
 function buildCases(weights: Weights, usePools: boolean): Case[] {
-  const history = drafts.filter((d) => d.patch && patchKey(d.patch) < from);
+  const history = drafts.filter((d) => d.date < from);
   const cases: Case[] = [];
   for (const series of groupSeries(drafts)) {
     if (!series.some(inEval)) continue;
@@ -178,6 +195,10 @@ function evaluate(cases: Case[], weights: Weights, lookahead: boolean) {
     const ids = r?.items.map((i) => i.champion) ?? [];
     const rank = ids.indexOf(c.actual);
     acc[c.type].push(rank < 0 ? Infinity : rank + 1);
+    if (rank < 0 && process.env.DEBUG_MISSES) {
+      const g = c.ctx.match.games[c.ctx.gameIndex];
+      console.log('miss', c.type, c.actual, 'game', c.ctx.gameIndex + 1, 'mode', c.ctx.match.mode, 'step', g.actions.length + 1, JSON.stringify(g.roleOverrides));
+    }
     // Baseline: the same candidates ordered by pro presence only.
     const byPresence = [...ids].sort((a, b) => (stats.champions[b]?.presence ?? 0) - (stats.champions[a]?.presence ?? 0));
     const brank = byPresence.indexOf(c.actual);
@@ -214,16 +235,24 @@ function print(label: string, m: ReturnType<typeof evaluate>) {
 const usePools = flag('pools');
 const lookahead = flag('lookahead');
 const evalGames = drafts.filter(inEval).length;
+const allSeries = groupSeries(drafts).filter((s) => s.some(inEval));
+console.log(
+  `series ${allSeries.length} (${allSeries.filter((s) => detectMode(s) === 'hard').length} fearless, longest ${Math.max(...allSeries.map((s) => s.length))} games)`,
+);
 console.log(`drafts ${drafts.length}, evaluated games ${evalGames}, stats games ${stats.games}, pools ${usePools}, lookahead ${lookahead}`);
 let weights: Weights = { ...DEFAULT_WEIGHTS, ...(opt('weights') ? JSON.parse(opt('weights')!) : {}) };
-const cases = buildCases(weights, usePools);
+const sample = Number(opt('sample', '1'));
+const cases = buildCases(weights, usePools).filter((_, i) => i % sample === 0);
 const t0 = performance.now();
 const before = evaluate(cases, weights, lookahead);
 print(`${opt('weights') ? 'given' : 'default'} weights (${((performance.now() - t0) / 1000).toFixed(1)}s)`, before);
 const out: Record<string, unknown> = { evaluatedGames: evalGames, usePools, lookahead, default: before };
 
 if (flag('tune')) {
-  const keys = (Object.keys(DEFAULT_WEIGHTS) as (keyof Weights)[]).filter((k) => k !== 'lookahead' || lookahead);
+  const only = opt('keys')?.split(',');
+  const keys = (Object.keys(DEFAULT_WEIGHTS) as (keyof Weights)[]).filter(
+    (k) => (only ? only.includes(k) : k !== 'lookahead' || lookahead),
+  );
   const grid = [0, 0.25, 0.5, 1, 1.5, 2, 3];
   let best = objective(before);
   for (let pass = 0; pass < 2; pass++) {

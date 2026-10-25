@@ -88,6 +88,19 @@ export function isEngage(c: Champion) {
 }
 export const isFrontline = (c: Champion) => c.toughness >= 3;
 
+/**
+ * Adds the roles a champion is actually played in at pro level (e.g. Naafiri jungle,
+ * Kai'Sa top) to its usual positions, so role filtering does not hide real flex picks.
+ */
+export function withProPositions(c: Champion, stats: StatsPack | null): Champion {
+  const s = stats?.champions[c.id];
+  if (!s || s.picks < 2) return c;
+  const extra = (Object.entries(s.roles) as [Role, number][])
+    .filter(([r, n]) => !c.positions.includes(r) && n >= 2 && n >= s.picks * 0.1)
+    .map(([r]) => r);
+  return extra.length ? { ...c, positions: [...c.positions, ...extra] } : c;
+}
+
 interface TeamState {
   picks: string[];
   roles: Record<string, Role>;
@@ -104,7 +117,7 @@ class Scorer {
   private availCache: Partial<Record<TeamId, Set<string>>> = {};
 
   constructor(readonly ctx: ScoreContext) {
-    this.byId = Object.fromEntries(ctx.champions.map((c) => [c.id, c]));
+    this.byId = Object.fromEntries(ctx.champions.map((c) => [c.id, withProPositions(c, ctx.stats)]));
     const game = ctx.match.games[ctx.gameIndex];
     this.view = replay(game, getOrder(ctx.match.orderId));
     const mk = (t: TeamId): TeamState => {
@@ -138,7 +151,7 @@ class Scorer {
     const s = this.ctx.stats?.champions[c.id];
     if (!this.ctx.stats) return { value: 0.5 };
     if (!s) return { value: 0.1 };
-    let value = 0.7 * Math.min(1, s.presence / (this.maxPresence * 0.8)) + 0.3 * clamp((s.winRate - 0.4) / 0.2, 0, 1);
+    let value = 0.85 * (s.presence / this.maxPresence) + 0.15 * clamp((s.winRate - 0.4) / 0.2, 0, 1);
     if (s.picks >= 3) value *= 0.4 + 0.6 * ((s.roles[role] ?? 0) / s.picks);
     return {
       value,
@@ -365,7 +378,7 @@ class Scorer {
     const opp = other(team);
     const theirs = this.pick(opp, c, { forBan: true });
     if (!theirs) return null;
-    const threat = theirs.parts.counter && theirs.parts.counter > 0 ? theirs.parts.counter / (this.ctx.weights.counter || 1) : 0;
+    const threat = Math.max(0, this.counter(opp, c, theirs.role!).value);
     const parts = { ...theirs.parts, threat: threat * this.ctx.weights.threat };
     const total = Object.values(parts).reduce((a, b) => a + (b ?? 0), 0);
     const oppPlayer = this.state[opp].team?.players[theirs.role!]?.name;
