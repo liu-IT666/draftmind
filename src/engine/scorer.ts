@@ -16,16 +16,21 @@ export type FactorKey =
 
 export type Weights = Record<FactorKey, number> & { threat: number };
 
+/**
+ * Tuned on August 2026 pro drafts (scripts/backtest.ts --tune) and checked on September to
+ * October, including Worlds: see README. Synergy and comp fit are kept small rather than at
+ * the tuned 0, which costs under half a point of hit rate and keeps pair scoring meaningful.
+ */
 export const DEFAULT_WEIGHTS: Weights = {
-  meta: 1,
-  proficiency: 1.5,
-  counter: 1,
-  synergy: 0.6,
-  compFit: 0.8,
-  flex: 0.4,
-  deny: 0.6,
-  exposure: 0.4,
-  scarcity: 0.5,
+  meta: 4,
+  proficiency: 1,
+  counter: 0.5,
+  synergy: 0.5,
+  compFit: 0.25,
+  flex: 0,
+  deny: 0.5,
+  exposure: 3,
+  scarcity: 0.25,
   lookahead: 0.5,
   threat: 0.5,
 };

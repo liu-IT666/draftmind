@@ -51,8 +51,8 @@ export function Settings({ state, stats, onChange }: Props) {
               {FACTOR_LABELS[k]}
               <span className="muted small">{HELP[k]}</span>
             </label>
-            <input type="range" min={0} max={3} step={0.1} value={state.weights[k]} onChange={(e) => setWeight(k, Number(e.target.value))} />
-            <span className="num">{state.weights[k].toFixed(1)}</span>
+            <input type="range" min={0} max={5} step={0.05} value={state.weights[k]} onChange={(e) => setWeight(k, Number(e.target.value))} />
+            <span className="num">{state.weights[k].toFixed(2)}</span>
           </div>
         ))}
         <button onClick={() => onChange({ weights: DEFAULT_WEIGHTS })}>恢复默认</button>

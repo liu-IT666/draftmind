@@ -209,7 +209,7 @@ h4 { margin: 0 0 6px; font-size: 14px; }
 
 .settings { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 12px 16px; max-width: 1200px; }
 .settings section { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
-.weight-row { display: grid; grid-template-columns: 1fr 160px 32px; gap: 8px; align-items: center; width: 100%; }
+.weight-row { display: grid; grid-template-columns: 1fr 160px 40px; gap: 8px; align-items: center; width: 100%; }
 .weight-row label { display: flex; flex-direction: column; }
 .check { display: flex; gap: 6px; align-items: center; }
 .data-info { display: grid; grid-template-columns: 80px 1fr; gap: 4px 8px; margin: 0; }
