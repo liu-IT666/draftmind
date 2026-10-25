@@ -41,6 +41,10 @@ npm run build      # 产出 dist/，纯静态文件，可直接部署到任意�
 
 Ban 分 = 对方视角的 Pick 分 + λ × 对我方已选英雄的克制。软全局下对方已经用过的英雄不会推荐 Ban。
 
+**前瞻（第二阶段）**：Pick 时取单步得分前 10 名，逐个模拟「选了它以后对方下一手的最佳选择」，对方最佳回应越强扣分越多（权重「前瞻」，设置页可关）。如果下一步还是我方（连续两手），先按我方贪心最佳走一步再看对方。
+
+**连续两手组合（第二阶段）**：轮到一方连续两手时（后手方第 2–3 手、先手方第 4–5 手、第二轮先手方连续两手），对前 10 名逐个固定第一手，再评第二手，两手一起计算协同和阵容缺口，给出组合排名，点击一次录入两手。
+
 位置是硬过滤：英雄必须能放进还空着的位置（已选的翻转英雄可以挪位置让出来）；默认只推荐选手英雄池里的英雄，英雄池为空时不限制。
 
 ## 数据
@@ -60,8 +64,20 @@ Ban 分 = 对方视角的 Pick 分 + λ × 对我方已选英雄的克制。软�
 }
 ```
 
-## 后续（第二阶段）
+## 回测
 
-浅层博弈搜索（连续两手组合评分、模拟对方下一步）、历史 BP 回测调权重、LCU 自动同步（桌面端）、外服高分段路人局统计。
+```bash
+python3 pipeline/leaguepedia_drafts.py --since 2026-06-01            # 一级联赛完整 BP 顺序 → pipeline/data/drafts.json
+python3 pipeline/leaguepedia_stats.py --offline --patch-max 26.16 \
+  --out pipeline/data/stats-train.json                                # 只用较早版本的统计，避免信息泄露
+npx vite-node scripts/backtest.ts -- --from 26.17 --to 26.18 --pools --tune     # 在验证集上调权重
+npx vite-node scripts/backtest.ts -- --from 26.19 --pools --weights '{...}'      # 在测试集上评估
+```
+
+对每一局的每个 Ban / Pick，按当时的局面（含系列赛前几局的全局锁定）让引擎给行动方的全部选项排序，统计实际选择落在第几名：Top 1 / 5 / 10 命中率和 MRR，并和「只按职业赛 BP 率排序」的基线对比。`--pools` 用每支队伍在评估区间之前的职业赛选择推出英雄池（选过 1 次 = 3 星，2 次 = 4 星，3 次以上 = 5 星）。系列赛里同一英雄出现两次就按普通 BP 处理，否则按硬全局。
+
+## 后续
+
+LCU 自动同步（桌面端）、外服高分段路人局统计、用职业赛数据自动生成对手英雄池、多人同步。
 
 DraftMind isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties.

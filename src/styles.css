@@ -152,6 +152,16 @@ h4 { margin: 0 0 6px; font-size: 14px; }
 .reasons .good { color: #8fd9b3; }
 .reasons .bad { color: #f2a0a2; }
 .reasons .info { color: var(--muted); }
+.pair-box h4 { margin: 8px 0 4px; font-size: 13px; color: var(--muted); }
+.pair-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.pair-list > li {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 5px 6px; border-radius: 6px;
+  background: var(--panel-2); border: 1px solid transparent; cursor: pointer;
+}
+.pair-list > li:hover { border-color: var(--accent); }
+.pair-list .score { margin-left: auto; color: var(--accent); font-variant-numeric: tabular-nums; }
+.pair-list .reasons { width: 100%; }
+.pair-champ { display: flex; align-items: center; gap: 4px; }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 10px; color: var(--muted); padding: 0 4px; }
 .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; }
 

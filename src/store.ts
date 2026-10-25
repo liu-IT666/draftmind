@@ -17,6 +17,8 @@ export interface AppState {
   gameIndex: number;
   weights: Weights;
   strictPool: boolean;
+  /** Shallow search over the opponent's best reply when ranking picks. */
+  lookahead: boolean;
   /** A stats pack imported by the user, replacing the built-in one. */
   customStats: StatsPack | null;
 }
@@ -42,6 +44,7 @@ function initial(): AppState {
     gameIndex: 0,
     weights: DEFAULT_WEIGHTS,
     strictPool: true,
+    lookahead: true,
     customStats: null,
   };
 }

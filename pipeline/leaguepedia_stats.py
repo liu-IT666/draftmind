@@ -6,6 +6,7 @@ small samples do not dominate.
 
 Usage: python3 pipeline/leaguepedia_stats.py --since 2026-07-01 [--out PATH]
        [--league LPL --league LCK ...] [--include-cached] [--max-wait 3600]
+       [--offline] [--patch-min 26.13] [--patch-max 26.16]
 Leaguepedia rate-limits hard; the script backs off and caches pages in .cache/.
 --league limits the query to tournaments whose name starts with the prefix, and
 --include-cached merges every page already cached by earlier runs, so a large
@@ -85,7 +86,10 @@ def main():
     ap.add_argument("--champions", default=os.path.join(HERE, "..", "src", "data", "champions.json"))
     ap.add_argument("--league", action="append", default=[], help="tournament name prefix, e.g. LPL")
     ap.add_argument("--include-cached", action="store_true", help="also use pages cached by earlier runs")
+    ap.add_argument("--offline", action="store_true", help="no network: build only from cached pages")
     ap.add_argument("--max-wait", type=int, default=None, help="max seconds to wait on rate limits")
+    ap.add_argument("--patch-min", help="only use games on this patch or later, e.g. 26.13")
+    ap.add_argument("--patch-max", help="only use games on this patch or earlier, e.g. 26.16 (for backtest training)")
     args = ap.parse_args()
     global MAX_WAIT
     MAX_WAIT = args.max_wait
@@ -107,10 +111,10 @@ def main():
         where += f" AND ({prefixes})"
     # ScoreboardGames lists each team's picks in role order (top, jungle, mid, bot, support),
     # so one table gives bans, picks, roles and the winner.
-    games = fetch_all("ScoreboardGames=SG",
+    games = [] if args.offline else fetch_all("ScoreboardGames=SG",
                       "SG.GameId,SG.Patch,SG.Tournament,SG.Team1Bans,SG.Team2Bans,SG.Team1Picks,SG.Team2Picks,SG.Winner",
                       where, "SG.GameId")
-    if args.include_cached:
+    if args.include_cached or args.offline:
         seen = {g["GameId"] for g in games}
         for name in sorted(os.listdir(CACHE)):
             with open(os.path.join(CACHE, name)) as f:
@@ -126,7 +130,18 @@ def main():
     tournaments = defaultdict(int)
     lineups = {}  # (game, side) -> role -> (champ, win)
     order = list(ROLES.values())
+    def patch_key(p):
+        try:
+            return tuple(int(x) for x in p.split("."))
+        except (AttributeError, ValueError):
+            return None
+
+    lo = patch_key(args.patch_min) if args.patch_min else None
+    hi = patch_key(args.patch_max) if args.patch_max else None
     for g in games:
+        pk = patch_key(g["Patch"])
+        if (lo or hi) and (pk is None or (lo and pk < lo) or (hi and pk > hi)):
+            continue
         t1, t2 = (g["Team1Picks"] or "").split(","), (g["Team2Picks"] or "").split(",")
         if len(t1) != 5 or len(t2) != 5 or g["Winner"] not in ("1", "2"):
             continue

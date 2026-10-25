@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { candidateRoles } from '../roles';
 import { newGame, newMatch } from '../rules';
-import { DEFAULT_WEIGHTS, recommend, type ScoreContext } from '../scorer';
+import { DEFAULT_WEIGHTS, recommend, recommendPairs, type ScoreContext } from '../scorer';
 import type { Champion, Role, StatsPack, Team } from '../types';
 
 function champ(id: string, positions: Role[], extra: Partial<Champion> = {}): Champion {
@@ -126,3 +126,55 @@ describe('recommend', () => {
     expect(cost(bo1)).toBe(0);
   });
 });
+
+describe('pairs', () => {
+  it('only applies when the acting team has two picks in a row', () => {
+    // Step 7 is a single first pick for the first-pick team.
+    expect(recommendPairs(at(ctx(), BANS))).toBeNull();
+    // Steps 8-9 are the second-pick team's double pick.
+    const pairs = recommendPairs(at(ctx(), [...BANS, 'MidA']), 3)!;
+    expect(pairs.length).toBeGreaterThan(0);
+    for (const p of pairs) {
+      expect(p.champions[0]).not.toBe(p.champions[1]);
+      expect(p.champions).not.toContain('MidA');
+      expect(p.roles[0]).not.toBe(p.roles[1]);
+    }
+  });
+
+  it('scores the second pick with the first already on the team', () => {
+    const stats: StatsPack = {
+      source: 'test', games: 100, champions: {}, counters: {},
+      synergy: { BotA: { SupA: [0.08, 40] }, SupA: { BotA: [0.08, 40] } },
+    };
+    const c = at(ctx({ stats }), [...BANS, 'MidA']);
+    c.weights = { ...DEFAULT_WEIGHTS, flex: 0, compFit: 0 };
+    const pairs = recommendPairs(c, 1)!;
+    expect([...pairs[0].champions].sort()).toEqual(['BotA', 'SupA']);
+  });
+});
+
+describe('lookahead', () => {
+  it('prefers the pick that leaves the opponent the weaker reply', () => {
+    // The enemy jungler is great on JgB only. Both junglers look equal to us, but taking
+    // JgB also removes the enemy's best reply, so lookahead should rank it first.
+    const c = at(
+      ctx({ teams: { ally: team('us'), enemy: team('them', { jungle: { JgB: 5, JgA: 1 } }) } }),
+      BANS,
+    );
+    c.match.mode = 'normal';
+    c.weights = { ...DEFAULT_WEIGHTS, deny: 0, flex: 0 };
+    const greedy = recommend(c, { limit: 20 })!;
+    const deep = recommend(c, { limit: 20, lookahead: true })!;
+    const rank = (r: typeof greedy, id: string) => r.items.findIndex((i) => i.champion === id);
+    expect(rank(deep, 'JgB')).toBeLessThan(rank(deep, 'JgA'));
+    expect(deep.items.find((i) => i.champion === 'JgB')!.parts.lookahead).toBe(0);
+    expect(greedy.items[0].parts.lookahead).toBeUndefined();
+  });
+
+  it('does nothing for bans', () => {
+    const r = recommend(ctx(), { lookahead: true })!;
+    expect(r.type).toBe('ban');
+    expect(r.items.every((i) => i.parts.lookahead === undefined)).toBe(true);
+  });
+});
+
