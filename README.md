@@ -2,13 +2,15 @@
 
 英雄联盟 BP 助手，面向职业 / 青训战队教练。网页版，手动录入 BP，每一步给出可解释的 Pick / Ban 推荐，支持普通 BP 和全局 BP（Fearless Draft，默认硬全局）。
 
+在线使用：https://liu-it666.github.io/draftmind/ 。教练使用说明见 [docs/USAGE.md](docs/USAGE.md)。
+
 ## 运行
 
 ```bash
 npm install
 npm run dev        # 本地开发，http://localhost:5173
 npm test           # 规则引擎和推荐评分的单元测试
-npm run build      # 产出 dist/，纯静态文件，可直接部署到任意静态托管
+npm run build      # 产出 dist/，纯静态文件；推到 main 后由 .github/workflows/pages.yml 自动部署到 GitHub Pages
 ```
 
 不需要后端。战队英雄池、当前系列赛和权重设置都保存在浏览器本地（localStorage），英雄池可以导出 / 导入 JSON 在教练组之间共享。
